@@ -1,5 +1,12 @@
-h1 {
-    color: blue;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 300%;
+.logo {
+    display: flex;
+}
+
+.logo_image {
+    width: 100px;
+    height: 100px;
+}
+
+.logo_text {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
