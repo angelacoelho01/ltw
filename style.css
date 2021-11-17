@@ -1,3 +1,15 @@
+body {
+    background-color: #ECEFF4;
+}
+
+.header {
+    background-color: #2E3440;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 1982px;
+}
+
 .logo {
     display: flex;
 }
@@ -9,4 +21,5 @@
 
 .logo_text {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #88C0D0;
 }
