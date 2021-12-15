@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
+
 body {
     background-color: #ECEFF4;
+    margin-top: 120px;
+    font-family: 'Roboto', sans-serif;
 }
 
 header {
@@ -40,6 +44,3 @@ header {
     font-size: 17px;
 }
 
-.num_holes {
-    color:white;
-}
