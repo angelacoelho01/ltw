@@ -2,8 +2,9 @@ body {
     background-color: #ECEFF4;
 }
 
-.header {
+header {
     background-color: #2E3440;
+    display: flex;
     position: fixed;
     top: 0px;
     left: 0px;
@@ -22,4 +23,23 @@ body {
 .logo_text {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #88C0D0;
+}
+
+.topnav {
+    overflow: hidden;
+    margin-left: 1020px;
+    margin-top: 32px;
+
+}
+
+.topnav a {
+    color: #eceff4;
+    text-align: center;
+    text-decoration: none;
+    padding: 14px 30px;
+    font-size: 17px;
+}
+
+.num_holes {
+    color:white;
 }
