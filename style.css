@@ -23,3 +23,72 @@ body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #88C0D0;
 }
+
+
+.board {
+    position: absolute;
+    /*display: flex;*/
+    /*align-items: flex-start;*/
+    top: 0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 1000px;
+    height: 500px;
+    background: #e5e9f0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #434c5e;
+    border-width: 8px;
+}
+
+.small_holes_up {
+    position: absolute;
+    top: 35px;
+    right: 450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: flex-start;
+    margin: auto;
+    gap: 10px;
+    gap: 10px 20px; /* row-gap column gap */
+    row-gap: 10px;
+    column-gap: 20px;
+}
+
+.small_holes_down {
+    position: absolute;
+    top: 280px;
+    right: 450px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    margin: auto;
+    gap: 10px;
+    gap: 10px 20px; /* row-gap column gap */
+    row-gap: 10px;
+    column-gap: 20px;
+}
+
+.small_hole {
+    width: 100px;
+    height: 150px;
+    background: #e5e9f0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #434c5e;
+    border-width: 8px;
+}
+
+/*criar uma divisão para o board, outra para os holes grandes, uma para cada linha de holes pequenos e uma para cada hole pequeno*/
