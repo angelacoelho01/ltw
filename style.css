@@ -27,8 +27,6 @@ body {
 
 .board {
     position: absolute;
-    /*display: flex;*/
-    /*align-items: flex-start;*/
     top: 0;
     left:0;
     bottom: 0;
@@ -45,7 +43,7 @@ body {
     border-width: 8px;
 }
 
-.small_holes_up {
+.small_pits_up {
     position: relative;
     top: 40px;
     display: flex;
@@ -60,7 +58,7 @@ body {
     column-gap: 20px;
 }
 
-.small_holes_down {
+.small_pits_down {
     position: relative;
     top: 130px;
     display: flex;
@@ -75,7 +73,7 @@ body {
     column-gap: 20px;
 }
 
-.small_hole {
+.small_pit {
     width: 100px;
     height: 150px;
     background: #e5e9f0;
@@ -86,5 +84,3 @@ body {
     border-color: #434c5e;
     border-width: 8px;
 }
-
-/*criar uma divisão para o board, outra para os holes grandes, uma para cada linha de holes pequenos e uma para cada hole pequeno*/
