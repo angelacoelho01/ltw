@@ -84,3 +84,36 @@ body {
     border-color: #434c5e;
     border-width: 8px;
 }
+
+.left_big_pit {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 405px;
+    background: #e5e9f0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #434c5e;
+    border-width: 8px;
+}
+
+.right_big_pit {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    bottom: 0;
+    width: 150px;
+    height: 405px;
+    background: #e5e9f0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #434c5e;
+    border-width: 8px;
+}
