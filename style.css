@@ -117,3 +117,13 @@ body {
     border-color: #434c5e;
     border-width: 8px;
 }
+
+.seed {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    shape-outside: ellipse(20% 50%);
+    clip-path: ellipse(20% 50%);
+    background: #88C0D0;
+}
