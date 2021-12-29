@@ -12,6 +12,10 @@ document.getElementById("bt").addEventListener("click", function(){
     let board = new Board("app", getNPits(), getNSeeds());
 });
 
+function randomInRange(min, max) {
+    return(Math.floor((Math.random() * (max - min) + 1) + min));    
+} 
+
 class Board {
     constructor(parentID, pitsPerPlayer, seedsPerPit) {
         const parent = document.getElementById(parentID);
@@ -41,6 +45,10 @@ class Board {
             else { pitsUp.appendChild(smallPit); } 
             for (let j = 0; j < seedsPerPit; j++){
                 let seed = document.createElement("div");
+                let left = randomInRange(5, 60);
+                let top = randomInRange(5, 65);
+                seed.style.top=top+"%";
+                seed.style.left=left+"%";
                 seed.className = "seed";
                 smallPit.appendChild(seed);
             }

@@ -94,6 +94,7 @@ body {
 }
 
 .small_pit {
+    position:relative;
     width: 100px;
     height: 150px;
     background: #e5e9f0;
@@ -139,7 +140,7 @@ body {
 }
 
 .seed {
-    float: left;
+    position: absolute;
     width: 40px;
     height: 40px;
     margin: 5px;
