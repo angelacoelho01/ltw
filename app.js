@@ -3,12 +3,17 @@ function getNPits() {
     return (d.options[d.selectedIndex].value);
 }
 
+function getNSeeds() {
+    let d = document.getElementById("selectNSeeds");
+    return (d.options[d.selectedIndex].value);
+}
+
 document.getElementById("bt").addEventListener("click", function(){
-    let board = new Board("app", getNPits());
+    let board = new Board("app", getNPits(), getNSeeds());
 });
 
 class Board {
-    constructor(parentID, PitsPerPlayer) {
+    constructor(parentID, pitsPerPlayer, seedsPerPit) {
         const parent = document.getElementById(parentID);
         const board = document.createElement("div");
         const leftCapturePit = document.createElement("div");
@@ -27,25 +32,21 @@ class Board {
         board.appendChild(pitsUp);
         board.appendChild(pitsDown);
         
-        this.content = new Array(PitsPerPlayer*2);
-        for(let i = 0; i < PitsPerPlayer*2; i++){
+        this.content = new Array(pitsPerPlayer*2);
+        for(let i = 0; i < pitsPerPlayer*2; i++){
             this.content[i] = 4;
             let smallPit = document.createElement("div");
             smallPit.className = "small_pit";
-            if (i < PitsPerPlayer){ pitsDown.appendChild(smallPit) }
+            if (i < pitsPerPlayer){ pitsDown.appendChild(smallPit) }
             else { pitsUp.appendChild(smallPit); } 
+            for (let j = 0; j < seedsPerPit; j++){
+                let seed = document.createElement("div");
+                seed.className = "seed";
+                smallPit.appendChild(seed);
+            }
         }
 
         board.appendChild(rightCapturePit);
         board.appendChild(leftCapturePit);
     }
 }
-
-    /*<div id=app></div>
-    <script src="app.js" type="module"></script>
-    <div class="header">
-        <div class="logo">
-            <img src="images/new_logo.png" class="logo_image" alt="Logo">
-            <h1 class="logo_text">Mancala</h1>
-        </div>
-    </div>*/

@@ -24,10 +24,25 @@ body {
     color: #88C0D0;
 }
 
-.input2{
-    position: absolute;
+.chooseNPits{
+    position: relative;
     margin: auto;
-    top: 150px;
+    top: 300px;
+    left: 700px;;
+}
+
+.chooseNSeeds{
+    position: relative;
+    margin: auto;
+    top: 320px;
+    left: 700px;
+}
+
+.submitButton {
+    position: relative;
+    margin: auto;
+    top: 340px;
+    left: 850px;
 }
 
 .board {

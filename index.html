@@ -6,12 +6,12 @@
 </head>
 <body>
     <div class="header">
-    <div class="logo">
+        <div class="logo">
             <img src="images/new_logo.png" class="logo_image" alt="Logo">
             <h1 class="logo_text">Mancala</h1>
         </div>
     </div>
-    <div class="input2">
+    <div class="chooseNPits">
         Choose the number of pits per player:
         <select id="selectNPits" onchange="getNPits();">
         <option  value="3">3</option>
@@ -19,8 +19,17 @@
         <option value="5">5</option>
         <option value="6">6</option>
         </select>
-        <input type="submit" value="Submit" id="bt">
     </div>
+    <div class="chooseNSeeds">
+        Choose the number of pits per player:
+        <select id="selectNSeeds" onchange="getNSeeds();">
+        <option  value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        </select>
+    </div>
+    <input class="submitButton" type="submit" value="Submit" id="bt">
     <div id=app></div>
     <script src="app.js"></script>
 </body>
