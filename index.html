@@ -4,41 +4,24 @@
     <link rel="stylesheet" href="style.css">
     <title>Mancala</title>
 </head>
-
 <body>
     <div class="header">
-        <div class="logo">
+    <div class="logo">
             <img src="images/new_logo.png" class="logo_image" alt="Logo">
             <h1 class="logo_text">Mancala</h1>
         </div>
     </div>
-    <div class="board">
-        <div class="small_pits_up">
-            <div class="small_pit">
-                <div class="seed"></div>
-                <div class="seed"></div>
-                <div class="seed"></div>
-                <div class="seed"></div>
-                <div class="seed"></div>
-            </div>
-            <div class="small_pit"></div>
-            <div class="small_pit"></div>
-            <div class="small_pit"></div>
-            <div class="small_pit"></div>
-            <div class="small_pit"></div>
-        </div>
-        <div class="small_pits_down">
-            <div class="small_pit"></div>
-            <div class="small_pit"></div>
-            <div class="small_pit"></div>
-            <div class="small_pit"></div>
-            <div class="small_pit"></div>
-            <div class="small_pit"></div>
-        </div>
-        <div class="left_big_pit"></div>
-        <div class="right_big_pit"></div>
+    <div class="input2">
+        Choose the number of pits per player:
+        <select id="selectNPits" onchange="getNPits();">
+        <option  value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        </select>
+        <input type="submit" value="Submit" id="bt">
     </div>
-    
+    <div id=app></div>
+    <script src="app.js"></script>
 </body>
-
 </html>

@@ -24,6 +24,11 @@ body {
     color: #88C0D0;
 }
 
+.input2{
+    position: absolute;
+    margin: auto;
+    top: 150px;
+}
 
 .board {
     position: absolute;
@@ -85,7 +90,7 @@ body {
     border-width: 8px;
 }
 
-.left_big_pit {
+.left_capture_pit {
     position: absolute;
     top: 40px;
     left: 40px;
@@ -102,7 +107,7 @@ body {
     border-width: 8px;
 }
 
-.right_big_pit {
+.right_capture_pit {
     position: absolute;
     top: 40px;
     right: 40px;
