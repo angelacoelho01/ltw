@@ -66,8 +66,8 @@ export default class Game {
     }
 
     endGame(){
-        player1HasNoSeeds = true;
-        player2HasNoSeeds = true;
+        let player1HasNoSeeds = true;
+        let player2HasNoSeeds = true;
         for(let i = 0; i < this.rightCaturePit; i++){
             if (this.pits[i] != 0){
                 player1HasNoSeeds = false;
@@ -83,7 +83,7 @@ export default class Game {
     }
 
     playGame(initialPlayer){
-        player = initialPlayer;
+        let player = initialPlayer;
         startPit = 0;
         while(!this.endGame()){
             if (!this.playRound(startPit, player)){
