@@ -11,6 +11,5 @@ document.getElementById("bt").addEventListener("click", function(){
     let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
     gameView.createBoard(numberOfPitsPerPlayer, numberOfSeedsPerPit);
     game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, "sonso", "mafarrico");
-    console.log(game.pits);
 });
 

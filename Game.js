@@ -6,13 +6,11 @@ export default class Game {
         this.player1 = new Player(name1);
         this.player2 = new Player(name2);
         this.numberOfPitsPerPlayer = numberOfPitsPerPlayer;
-        this.totalNumberOfPits = numberOfSeedsPerPit*2 + 2;
+        this.totalNumberOfPits = this.numberOfPitsPerPlayer*2 + 2;
         this.rightCaturePit = numberOfPitsPerPlayer;
         this.leftCapturePit = this.totalNumberOfPits - 1;
-    }
-
-    isLastMove(seedsToBeMoved, counter){
-        return seedsToBeMoved == counter;
+        this.pits[this.leftCapturePit] = 0;
+        this.pits[this.rightCaturePit] = 0;
     }
 
     isInPlayer1Pits(index){
@@ -25,7 +23,7 @@ export default class Game {
 
 
     playRound(startPit, player){
-        seedsToBeMoved = this.pits[startPit];
+        let seedsToBeMoved = this.pits[startPit];
         this.pits[startPit] = 0;
         for(let i = 1; i <= seedsToBeMoved; i++){
             if (startPit + i == this.leftCapturePit){
@@ -36,23 +34,28 @@ export default class Game {
                 } else {
                     this.pits[startPit + i]++;
                     seedsToBeMoved-=i;
-                    startPit = 0;
+                    startPit = -1;
                     i = 0;
                     if (seedsToBeMoved == 0) return true; //The player will play again
                 }
             } else if (startPit + i == this.rightCaturePit){
                 if (player == this.player1){
                     this.pits[startPit + i]++;
-                    if (isLastMove(seedsToBeMoved, i)) return true; //The player will play again
+                    if (seedsToBeMoved == i) return true; //The player will play again
                 } else {
-                    i--;
+                    seedsToBeMoved++;
                 }
-            } else if (this.isLastMove(seedsToBeMoved, i) && this.pits[startPit + i] == 0){
+            } else if (seedsToBeMoved == i && this.pits[startPit + i] == 0){
                 if (player==this.player1 && this.isInPlayer1Pits(startPit + i)){
-                    this.pits[this.rightCaturePit]+=this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] + 1;
+                    this.pits[this.rightCapturePit] += this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] + 1;
+                    this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] = 0;
                 }
                 else if( player == this.player2 && this.isInPlayer2Pits(startPit + i)){
-                    this.pits[this.leftCaturePit]+=this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] + 1;
+                    this.pits[this.leftCapturePit] += this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] + 1;
+                    this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] = 0;
+                }
+                else {
+                    this.pits[startPit + i]++;
                 }
             }
             else {
