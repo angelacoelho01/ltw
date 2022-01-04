@@ -2,50 +2,48 @@
 
 body {
     background-color: #ECEFF4;
-    margin-top: 120px;
     font-family: 'Roboto', sans-serif;
+    margin: 0;
 }
 
 header {
+    overflow: hidden;
     background-color: #2E3440;
     display: flex;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 1982px;
-}
-
-.logo {
-    display: flex;
+    justify-content: space-between;
 }
 
 .logo_image {
     width: 100px;
     height: 100px;
+    vertical-align: middle;
 }
 
 .logo_text {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #88C0D0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
+    font-size:xx-large;
+    vertical-align: middle;
 }
 
-.topnav {
-    overflow: hidden;
-    justify-content: right;
-    margin-left: 1020px;
-    margin-top: 32px;
-
+.authentication {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 50px;
 }
 
 .auth {
     display: flex;
     flex-direction: column;
     position: fixed;
+    position: absolute;
     top: 50%;
-    right: 50%;
-    margin-top: -50px;
-    margin-left: -100px;
+    left: 50%;
+    transform: translate(-50%, -50%);
     gap: 10px;
+    font-size: xx-large;
 }
 
 .inputFields {
