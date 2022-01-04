@@ -7,10 +7,10 @@ export default class Game {
         this.player2 = new Player(name2);
         this.numberOfPitsPerPlayer = numberOfPitsPerPlayer;
         this.totalNumberOfPits = this.numberOfPitsPerPlayer*2 + 2;
-        this.rightCaturePit = numberOfPitsPerPlayer;
+        this.rightCapturePit = numberOfPitsPerPlayer;
         this.leftCapturePit = this.totalNumberOfPits - 1;
         this.pits[this.leftCapturePit] = 0;
-        this.pits[this.rightCaturePit] = 0;
+        this.pits[this.rightCapturePit] = 0;
     }
 
     isInPlayer1Pits(index){

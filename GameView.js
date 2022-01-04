@@ -5,6 +5,46 @@ export default class GameView {
     createBoard(numberOfPitsPerPlayer, numberOfSeedsPerPit){
         this.board = new Board(this.root, numberOfPitsPerPlayer, numberOfSeedsPerPit);
     }
+    removeChilds(parent){
+        while(parent.firstChild){
+            parent.removeChild(parent.lastChild);
+        }
+    }
+    addNewSeeds(parent, numberOfSeeds){
+        for(let i = 0; i < numberOfSeeds; i++){
+            let seed = document.createElement("div");
+            let left = Math.floor((Math.random() * (60 - 5) + 1) + 5);
+            let top = Math.floor((Math.random() * (65 - 5) + 1) + 5);
+            seed.style.top=top+"%";
+            seed.style.left=left+"%";
+            seed.className = "seed";
+            parent.appendChild(seed);
+        }
+    }
+    updateNumberOfSeeds(parent, numberOfSeeds){
+        if(parent.childElementCount != numberOfSeeds){
+            this.removeChilds(parent);
+            this.addNewSeeds(parent, numberOfSeeds);
+        }
+    }
+    updateGameView(game){
+        let divPits = document.querySelectorAll(".small_pit");
+        let leftCapturePit = document.querySelector(".left_capture_pit");
+        let rightCapturePit = document.querySelector(".right_capture_pit");
+        let pits = Array.from(divPits);
+       
+        for(let i = 0; i < pits.length+2; i++){
+            if (i < game.numberOfPitsPerPlayer){
+                this.updateNumberOfSeeds(pits[i - (-game.numberOfPitsPerPlayer)], game.pits[i]);
+            } else if (i > game.numberOfPitsPerPlayer && i < game.totalNumberOfPits - 1){
+                this.updateNumberOfSeeds(pits[game.numberOfPitsPerPlayer*2-i], game.pits[i]);
+            } else if (i == game.rightCapturePit){
+                this.updateNumberOfSeeds(rightCapturePit, game.pits[i]);
+            } else if (i == game.leftCapturePit){
+                this.updateNumberOfSeeds(leftCapturePit, game.pits[i]);
+            }
+        }
+    }
 }
 
 class Board {

@@ -13,15 +13,11 @@ document.getElementById("bt").addEventListener("click", function(){
     gameView.createBoard(numberOfPitsPerPlayer, numberOfSeedsPerPit);
     game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, "sonso", "mafarrico");
     const pits = document.querySelectorAll(".small_pit");
-    const a = Array.from(pits);
-    a.forEach(pit => {
+    const pitsArray = Array.from(pits);
+    pitsArray.forEach(pit => {
         pit.addEventListener("click", function() {
-            if(a.indexOf(pit) < numberOfPitsPerPlayer){
-               console.log(numberOfPitsPerPlayer*2- a.indexOf(pit));
-            }
-            else{
-                console.log(a.indexOf(pit) - numberOfPitsPerPlayer);
-            }
+           console.log(pitsArray.indexOf(pit));
+           gameView.updateGameView(game);
         });
     });
 });
@@ -33,3 +29,13 @@ function playRound(pitIndex){
     }
 }
 
+/*pitsArray.forEach(pit => {
+        pit.addEventListener("click", function() {
+            if(pitsArray.indexOf(pit) < numberOfPitsPerPlayer){
+               console.log(numberOfPitsPerPlayer*2- pitsArray.indexOf(pit));
+            }
+            else{
+                console.log(pitsArray.indexOf(pit) - numberOfPitsPerPlayer);
+            }
+        });
+    });*/
