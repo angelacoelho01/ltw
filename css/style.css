@@ -31,16 +31,28 @@ header {
 
 .topnav {
     overflow: hidden;
+    justify-content: right;
     margin-left: 1020px;
     margin-top: 32px;
 
 }
 
-.topnav a {
-    color: #eceff4;
-    text-align: center;
-    text-decoration: none;
-    padding: 14px 30px;
-    font-size: 17px;
+.auth {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    right: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+    gap: 10px;
+}
+
+.inputFields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 200px;
 }
 
