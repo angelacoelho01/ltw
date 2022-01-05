@@ -16,7 +16,12 @@ document.getElementById("bt").addEventListener("click", function(){
     const pitsArray = Array.from(pits);
     pitsArray.forEach(pit => {
         pit.addEventListener("click", function() {
-           console.log(pitsArray.indexOf(pit));
+            console.log(pitsArray.indexOf(pit));
+           if (pitsArray.indexOf(pit) >= game.numberOfPitsPerPlayer){
+               playRound(pitsArray.indexOf(pit) - game.numberOfPitsPerPlayer); 
+           } else {
+               playRound(game.numberOfPitsPerPlayer*2 - pitsArray.indexOf(pit)); 
+           }
            gameView.updateGameView(game);
         });
     });
@@ -24,7 +29,8 @@ document.getElementById("bt").addEventListener("click", function(){
 
 function playRound(pitIndex){
     if(!game.endGame()){
-        game.playRound(pitIndex, game.player1);
+        game.playRound(pitIndex, game.currentPlayer);
+        console.log(game.currentPlayer);
         console.log(game.pits);
     }
 }

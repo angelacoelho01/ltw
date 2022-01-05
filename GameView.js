@@ -35,7 +35,7 @@ export default class GameView {
        
         for(let i = 0; i < pits.length+2; i++){
             if (i < game.numberOfPitsPerPlayer){
-                this.updateNumberOfSeeds(pits[i - (-game.numberOfPitsPerPlayer)], game.pits[i]);
+                this.updateNumberOfSeeds(pits[i + parseInt(game.numberOfPitsPerPlayer)], game.pits[i]);
             } else if (i > game.numberOfPitsPerPlayer && i < game.totalNumberOfPits - 1){
                 this.updateNumberOfSeeds(pits[game.numberOfPitsPerPlayer*2-i], game.pits[i]);
             } else if (i == game.rightCapturePit){
