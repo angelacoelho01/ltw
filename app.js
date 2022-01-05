@@ -34,14 +34,3 @@ function playRound(pitIndex){
         console.log(game.pits);
     }
 }
-
-/*pitsArray.forEach(pit => {
-        pit.addEventListener("click", function() {
-            if(pitsArray.indexOf(pit) < numberOfPitsPerPlayer){
-               console.log(numberOfPitsPerPlayer*2- pitsArray.indexOf(pit));
-            }
-            else{
-                console.log(pitsArray.indexOf(pit) - numberOfPitsPerPlayer);
-            }
-        });
-    });*/
