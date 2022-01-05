@@ -51,7 +51,25 @@ document.getElementById("register").addEventListener("click", function() {
     });
 });
 
+document.getElementById("instructions").addEventListener("click", function() {
+    let elementsRegister = document.getElementsByClassName("container");
+    for(let i = 0; i < elementsRegister.length; i++) elementsRegister[i].remove();
 
+    let instructions = document.createElement("container");
+    instructions.className = "auth";
+    instructions.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    document.body.appendChild(instructions);
+});
+
+document.getElementById("scoreboard").addEventListener("click", function() {
+    let elementsRegister = document.getElementsByClassName("container");
+    for(let i = 0; i < elementsRegister.length; i++) elementsRegister[i].remove();
+
+    let scoreboard = document.createElement("container");
+    scoreboard.className = "auth";
+    scoreboard.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    document.body.appendChild(scoreboard);
+});
 
 
 

@@ -13,6 +13,13 @@ header {
     justify-content: space-between;
 }
 
+.headerLeft {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    gap: 100px;
+}
+
 .logo_image {
     width: 100px;
     height: 100px;
@@ -21,10 +28,29 @@ header {
 
 .logo_text {
     color: #88C0D0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     font-size:xx-large;
     vertical-align: middle;
+}
+
+.commands {
+    display: flex;
+    gap: 20px;
+}
+
+.commands a {
+    font-family: 'Roboto', sans-serif;
+    vertical-align: middle;
+    text-decoration: none;
+    padding: 20px 20px;
+    color: white;
+}
+
+.commands a:hover {
+    background-color: #88C0D0;;
+    color: white;
+    border-radius: 10px;
 }
 
 .authentication {
