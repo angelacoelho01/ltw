@@ -49,7 +49,7 @@ export class Register {
     createSubmitButton() {
         let button = document.createElement("button");
 
-        button.className = "submitButton";
+        button.id = "registerSubmitButton";
         button.type = "submit";
         button.innerHTML = "Register";
 

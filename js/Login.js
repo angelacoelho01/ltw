@@ -45,7 +45,7 @@ export class Login {
     createSubmitButton() {
         let button = document.createElement("button");
 
-        button.className = "submitButton";
+        button.id = "loginSubmitButton";
         button.type = "submit";
         button.innerHTML = "Login";
         
