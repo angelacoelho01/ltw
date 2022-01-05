@@ -61,8 +61,21 @@ document.getElementById("instructions").addEventListener("click", function() {
     let instructions = document.createElement("div");
     instructions.className = "auth";
     instructions.innerHTML = "Instructions";
+
+    let button = document.createElement("button");
+
+    button.id = "back";
+    button.type = "submit";
+    button.innerHTML = "Back";
+        
+    instructions.appendChild(button);
+
     container.appendChild(instructions);
     document.body.appendChild(container);
+
+    document.getElementById("back").addEventListener("click", function() {
+        window.location.reload();
+    });
 });
 
 document.getElementById("scoreboard").addEventListener("click", function() {
@@ -76,7 +89,22 @@ document.getElementById("scoreboard").addEventListener("click", function() {
     scoreboard.className = "auth";
     scoreboard.innerHTML = "Scoreboard";
     container.appendChild(scoreboard);
+
+    let button = document.createElement("button");
+
+    button.id = "back";
+    button.type = "submit";
+    button.innerHTML = "Back";
+        
+    scoreboard.appendChild(button);
+
+    container.appendChild(scoreboard);
+
     document.body.appendChild(container);
+
+    document.getElementById("back").addEventListener("click", function() {
+        window.location.reload();
+    });
 });
 
 
