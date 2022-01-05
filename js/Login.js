@@ -1,5 +1,8 @@
 export class Login {
     constructor() {
+        this.container = document.createElement("div");
+        this.container.className = "container";
+
         this.login = document.createElement("div");
         this.login.className = "auth";
 
@@ -14,7 +17,8 @@ export class Login {
         this.createInputFields();
         this.createSubmitButton();
 
-        document.body.appendChild(this.login);
+        this.container.appendChild(this.login);
+        document.body.appendChild(this.container);
     }
 
     createInputFields() {

@@ -1,5 +1,8 @@
 export class Register {
     constructor() {
+        this.container = document.createElement("div");
+        this.container.className = "container";
+
         this.register = document.createElement("div");
         this.register.className = "auth";
 
@@ -14,7 +17,8 @@ export class Register {
         this.createInputFields();
         this.createSubmitButton();
 
-        document.body.appendChild(this.register);
+        this.container.appendChild(this.register);
+        document.body.appendChild(this.container);
     }
 
     createInputFields() {
