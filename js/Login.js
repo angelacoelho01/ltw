@@ -8,9 +8,15 @@ export class Login {
 
         this.inputFields = document.createElement("div");
         this.inputFields.className = "inputFields";
+
+        this.createContainer();
     }
 
     userLogin() {
+        document.body.appendChild(this.container);
+    }
+
+    createContainer() {
         let title = document.createTextNode("Sign In");
         this.login.appendChild(title);
 
@@ -18,7 +24,6 @@ export class Login {
         this.createSubmitButton();
 
         this.container.appendChild(this.login);
-        document.body.appendChild(this.container);
     }
 
     createInputFields() {

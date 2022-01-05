@@ -9,6 +9,8 @@ let login = new Login();
 let register = new Register();
 
 let hasGameStarted = false;
+let loginMade = false;
+let registerMade = false;
 
 document.getElementById("bt").addEventListener("click", function(){
     let nPits = document.getElementById("selectNPits");
@@ -29,18 +31,17 @@ document.getElementById("bt").addEventListener("click", function(){
 
 document.getElementById("login").addEventListener("click", function() {
     let elementsLogin = document.getElementsByClassName("container");
-    console.log("login = ");
-    console.log(elementsLogin);
     for(let i = 0; i < elementsLogin.length; i++) elementsLogin[i].remove();
+
     login.userLogin();
+
 });
 
 document.getElementById("register").addEventListener("click", function() {
     let elementsRegister = document.getElementsByClassName("container");
-    console.log("register = " );
-    console.log(elementsRegister);
     for(let i = 0; i < elementsRegister.length; i++) elementsRegister[i].remove();
-    register.userRegister();
+
+    register.userRegister();    
 });
 
 function playRound(pitIndex){

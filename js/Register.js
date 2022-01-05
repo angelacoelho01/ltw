@@ -8,9 +8,11 @@ export class Register {
 
         this.inputFields = document.createElement("div");
         this.inputFields.className = "inputFields";
+        
+        this.createContainer();
     }
 
-    userRegister() {
+    createContainer() {
         let title = document.createTextNode("Sign Up");
         this.register.appendChild(title);
 
@@ -18,6 +20,9 @@ export class Register {
         this.createSubmitButton();
 
         this.container.appendChild(this.register);
+    }
+
+    userRegister() {
         document.body.appendChild(this.container);
     }
 
