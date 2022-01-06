@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+body {
+    background-color: #ECEFF4;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+}
+
+header {
+    overflow: hidden;
+    background-color: #2E3440;
+    display: flex;
+    justify-content: space-between;
+}
+
+.headerLeft {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    gap: 100px;
+}
+
+.logo_image {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+}
+
+.logo_text {
+    color: #88C0D0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size:xx-large;
+    vertical-align: middle;
+}
+
+.commands {
+    display: flex;
+    gap: 20px;
+}
+
+.commands a {
+    font-family: 'Roboto', sans-serif;
+    vertical-align: middle;
+    text-decoration: none;
+    padding: 20px 20px;
+    color: white;
+}
+
+.commands a:hover {
+    background-color: #88C0D0;
+    color: white;
+    border-radius: 5px;
+}
+
+.authentication {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-right: 50px;
+}
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 10px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.inputFields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 200px;
+}
+
+.gameOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.chooseNPits{
+    position: relative;
+    margin: auto;
+}
+
+.chooseNSeeds{
+    position: relative;
+    margin: auto;
+}
+
+.submitButton {
+    position: relative;
+    margin: auto;
+    background-color: #2E3440;
+    color: #88C0D0;
+    border-radius: 5px;
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    padding: 5px;
+    border: none;
+}
+
+#login, #register {
+    color: #2E3440;
+    background-color: #88C0D0;
+    border-radius: 5px;
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    padding: 5px;
+}
+
+#loginSubmitButton, #registerSubmitButton {
+    background-color: #2E3440;
+    color: #88C0D0;
+    border-radius: 5px;
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    margin: auto;
+    padding: 5px;
+}
+
+.board {
+    position: absolute;
+    top: 0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 1300px;
+    height: 500px;
+    background: #e5e9f0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #434c5e;
+    border-width: 8px;
+}
+
+.small_pits_up {
+    position: relative;
+    top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    margin: auto;
+    gap: 10px;
+    gap: 10px 20px; /* row-gap column gap */
+    row-gap: 10px;
+    column-gap: 20px;
+}
+
+.small_pits_down {
+    position: relative;
+    top: 130px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+    margin: auto;
+    gap: 10px;
+    gap: 10px 20px; /* row-gap column gap */
+    row-gap: 10px;
+    column-gap: 20px;
+}
+
+.small_pit {
+    position:relative;
+    width: 100px;
+    height: 150px;
+    background: #e5e9f0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #434c5e;
+    border-width: 8px;
+}
+
+.left_capture_pit {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    bottom: 0;
+    right: 0;
+    width: 150px;
+    height: 405px;
+    background: #e5e9f0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #434c5e;
+    border-width: 8px;
+}
+
+.right_capture_pit {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    bottom: 0;
+    width: 150px;
+    height: 405px;
+    background: #e5e9f0;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #434c5e;
+    border-width: 8px;
+}
+
+.seed {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    shape-outside: ellipse(20% 50%);
+    clip-path: ellipse(20% 50%);
+    background: #88C0D0;
+}
+
+#back {
+    background-color: #2E3440;
+    color: #88C0D0;
+    border-radius: 5px;
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+}
+
