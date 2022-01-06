@@ -1,5 +1,7 @@
 export default class Game {
-    constructor() {}
+    constructor() {
+        this.hasStarted = false;
+    }
 
     create(numberOfPitsPerPlayer, numberOfSeedsPerPit, name1, name2){
         this.pits = new Array(numberOfPitsPerPlayer*2 + 2).fill(numberOfSeedsPerPit);
@@ -12,6 +14,7 @@ export default class Game {
         this.pits[this.leftCapturePit] = 0;
         this.pits[this.rightCapturePit] = 0;
         this.currentPlayer = this.player1;
+        this.hasStarted = true;
     }
 
     isInPlayer1Pits(index){

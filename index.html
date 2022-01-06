@@ -1,36 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Mancala</title>
 </head>
+
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="images/new_logo.png" class="logo_image" alt="Logo">
-            <h1 class="logo_text">Mancala</h1>
+    <header>
+        <div class="headerLeft">
+            <div class="logo">
+                <img src="images/new_logo.png" class="logo_image" alt="Logo" />
+                <span class="logo_text">Mancala</span>
+            </div>
+            <div class="commands">
+                <a id="instructions">Instructions</a>
+                <a  id="scoreboard">Scoreboard</a>
+            </div> 
+        </div>
+        <div class="authentication">
+            <button class="loginButton" type="submit" id="login">Login</button>
+            <button class="registerButton" type="submit" id="register">Register</button>
+
+        </div>
+    </header>
+
+    <div class="container" id=app>
+        <div class="gameOptions">
+            <div class="chooseNPits">
+                Choose the number of pits per player:
+                <select id="selectNPits">
+                <option  value=3>3</option>
+                <option value=4>4</option>
+                <option value=5>5</option>
+                <option value=6>6</option>
+                </select>
+            </div>
+            <div class="chooseNSeeds">
+                Choose the number of seeds per player:
+                <select id="selectNSeeds">
+                <option  value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                </select>
+            </div>
+            <input class="submitButton" type="submit" value="Submit" id="bt" />
         </div>
     </div>
-    <div class="chooseNPits">
-        Choose the number of pits per player:
-        <select id="selectNPits">
-        <option  value=3>3</option>
-        <option value=4>4</option>
-        <option value=5>5</option>
-        <option value=6>6</option>
-        </select>
-    </div>
-    <div class="chooseNSeeds">
-        Choose the number of seeds per player:
-        <select id="selectNSeeds">
-        <option  value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        </select>
-    </div>
-    <input class="submitButton" type="submit" value="Submit" id="bt">
-    <div id=app></div>
-    <script src="app.js" type="module"></script>
+    <script src="js/app.js" type="module"></script>
 </body>
+
 </html>
+
