@@ -2,6 +2,7 @@ import { Login } from './Login.js';
 import { Register } from './Register.js';
 import Game from './Game.js';
 import GameView from "./GameView.js"
+import {removeElementsByClassName, removeClass, createButton, addClass, loadPage} from './utils.js';
 
 let gameView = new GameView();
 let game = new Game();
@@ -19,32 +20,30 @@ document.getElementById("bt").addEventListener("click", function(){
 });
 
 document.getElementById("login").addEventListener("click", function() {
-    let elementsLogin = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsLogin.length; i++) elementsLogin[i].remove();
-
+    loadPage();
     login.userLogin();
 
     document.getElementById("loginSubmitButton").addEventListener("click", function() {
-        console.log("login here");
         window.location.reload();
     });
 });
 
 document.getElementById("register").addEventListener("click", function() {
-    let elementsRegister = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsRegister.length; i++) elementsRegister[i].remove();
-
+    loadPage();
     register.userRegister();  
     
     document.getElementById("registerSubmitButton").addEventListener("click", function() {
-        console.log("register here");
         window.location.reload();
     });
 });
 
+document.getElementById("play").addEventListener("click", function() {
+    window.location.reload();
+});
+
 document.getElementById("instructions").addEventListener("click", function() {
-    let elementsInstruction = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsInstruction.length; i++) elementsInstruction[i].remove();
+    loadPage();
+    addClass("instructions", "active");
 
     let container = document.createElement("container");
     container.className = "container";
@@ -54,29 +53,34 @@ document.getElementById("instructions").addEventListener("click", function() {
     instructions.className = "auth";
     instructions.innerHTML = "Instructions";
 
-    let button = document.createElement("button");
+    let playButton = createButton("playButton", "submit", "Play") ;
+    instructions.appendChild(playButton);
 
-    button.id = "back";
-    button.type = "submit";
-    button.innerHTML = "Back";
-        
-    instructions.appendChild(button);
+    if(game.hasStarted) {
+        let resumeButton = createButton("resumeButton", "submit", "Resume");
+        instructions.appendChild(resumeButton);
+    }
 
     container.appendChild(instructions);
     document.body.appendChild(container);
 
-    document.getElementById("back").addEventListener("click", function() {
-        if (game.hasStarted) {
+    document.getElementById("playButton").addEventListener("click", function() {
+        window.location.reload();
+    });
+
+    if(game.hasStarted) {
+        document.getElementById("resumeButton").addEventListener("click", function() {
             gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits);
             addEventListenerInPits();
-        }
-        else window.location.reload();
-    });
+            removeClass("active");
+            addClass("play", "active");
+        });
+    }
 });
 
 document.getElementById("scoreboard").addEventListener("click", function() {
-    let elementsScoreboard = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsScoreboard.length; i++) elementsScoreboard[i].remove();
+    loadPage();
+    addClass("scoreboard", "active");
 
     let container = document.createElement("container");
     container.className = "container";
@@ -87,25 +91,30 @@ document.getElementById("scoreboard").addEventListener("click", function() {
     scoreboard.innerHTML = "Scoreboard";
     container.appendChild(scoreboard);
 
-    let button = document.createElement("button");
+    let playButton = createButton("playButton", "submit", "Play");        
+    scoreboard.appendChild(playButton);
 
-    button.id = "back";
-    button.type = "submit";
-    button.innerHTML = "Back";
-        
-    scoreboard.appendChild(button);
+    if(game.hasStarted) {
+        let resumeButton = createButton("resumeButton", "submit", "Resume");
+        scoreboard.appendChild(resumeButton);
+    }
 
     container.appendChild(scoreboard);
 
     document.body.appendChild(container);
 
-    document.getElementById("back").addEventListener("click", function() {
-        if (game.hasStarted) {
+    document.getElementById("playButton").addEventListener("click", function() {
+        window.location.reload();
+    });
+
+    if(game.hasStarted) {
+        document.getElementById("resumeButton").addEventListener("click", function() {
             gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits);
             addEventListenerInPits();
-        }
-        else window.location.reload();
-    });
+            removeClass("active");
+            addClass("play", "active");
+        });
+    }
 });
 
 function playRound(pitIndex){
