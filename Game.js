@@ -83,18 +83,6 @@ export default class Game {
         }
         return player1HasNoSeeds || player2HasNoSeeds;
     }
-
-    playGame(initialPlayer){
-        let player = initialPlayer;
-        startPit = 0;
-        while(!this.endGame()){
-            if (!this.playRound(startPit, player)){
-                player = player == this.player1 ? this.player2 : this.player1;
-            }
-        }
-        this.player1.points = pits[this.rightCaturePit];
-        this.player2.points = pits[this.rightCaturePit];
-    }
 }
 
 class Player{

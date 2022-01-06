@@ -10,8 +10,8 @@ document.getElementById("bt").addEventListener("click", function(){
     let nSeeds = document.getElementById("selectNSeeds");
     let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
     let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
-    gameView.createBoard(numberOfPitsPerPlayer, numberOfSeedsPerPit);
     game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, "sonso", "mafarrico");
+    gameView.createBoard(numberOfPitsPerPlayer, game.pits);
     const pits = document.querySelectorAll(".small_pit");
     const pitsArray = Array.from(pits);
     pitsArray.forEach(pit => {
