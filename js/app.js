@@ -53,13 +53,13 @@ document.getElementById("instructions").addEventListener("click", function() {
     instructions.className = "auth";
     instructions.innerHTML = "Instructions";
 
-    let playButton = createButton("playButton", "submit", "Play") ;
-    instructions.appendChild(playButton);
-
     if(game.hasStarted) {
         let resumeButton = createButton("resumeButton", "submit", "Resume");
         instructions.appendChild(resumeButton);
     }
+    
+    let playButton = createButton("playButton", "submit", "Play") ;
+    instructions.appendChild(playButton);
 
     container.appendChild(instructions);
     document.body.appendChild(container);
@@ -91,13 +91,13 @@ document.getElementById("scoreboard").addEventListener("click", function() {
     scoreboard.innerHTML = "Scoreboard";
     container.appendChild(scoreboard);
 
-    let playButton = createButton("playButton", "submit", "Play");        
-    scoreboard.appendChild(playButton);
-
     if(game.hasStarted) {
         let resumeButton = createButton("resumeButton", "submit", "Resume");
         scoreboard.appendChild(resumeButton);
     }
+
+    let playButton = createButton("playButton", "submit", "Play");        
+    scoreboard.appendChild(playButton);
 
     container.appendChild(scoreboard);
 

@@ -122,7 +122,7 @@ header {
     padding: 5px;
 }
 
-#loginSubmitButton, #registerSubmitButton {
+#loginSubmitButton, #registerSubmitButton, #resumeButton, #playButton {
     background-color: #2E3440;
     color: #88C0D0;
     border-radius: 5px;
@@ -242,12 +242,5 @@ header {
     border-radius: 5px;
 }
 
-#playButton {
-    background-color: #2E3440;
-    color: #88C0D0;
-    border-radius: 5px;
-    font-size: large;
-    font-family: 'Roboto', sans-serif;
-    border: none;
-}
+
 
