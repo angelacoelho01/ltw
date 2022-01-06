@@ -43,8 +43,8 @@ document.getElementById("register").addEventListener("click", function() {
 });
 
 document.getElementById("instructions").addEventListener("click", function() {
-    let elementsRegister = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsRegister.length; i++) elementsRegister[i].remove();
+    let elementsInstruction = document.getElementsByClassName("container");
+    for(let i = 0; i < elementsInstruction.length; i++) elementsInstruction[i].remove();
 
     let container = document.createElement("container");
     container.className = "container";
@@ -75,8 +75,8 @@ document.getElementById("instructions").addEventListener("click", function() {
 });
 
 document.getElementById("scoreboard").addEventListener("click", function() {
-    let elementsRegister = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsRegister.length; i++) elementsRegister[i].remove();
+    let elementsScoreboard = document.getElementsByClassName("container");
+    for(let i = 0; i < elementsScoreboard.length; i++) elementsScoreboard[i].remove();
 
     let container = document.createElement("container");
     container.className = "container";
