@@ -30,11 +30,6 @@
     width: 200px;
 }
 
-#usernameLabel, #passwordLabel {
-    font-size: small;
-    font-weight: normal;
-}
-
 .inputFields input {
     background-color: transparent;
     border: 1px solid #2E3440;

@@ -1,9 +1,12 @@
+import * as utils from './utils/utils.js';
+
 export default class GameView {
     constructor(){}
 
     createBoard(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit, game){
         this.board = new Board(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit);
         this.createPlayersScore(parentID, game);
+        this.createButtons(parentID);
     }
     updateGameView(game){
         let divPits = document.querySelectorAll(".small_pit");
@@ -56,8 +59,21 @@ export default class GameView {
 
         playersNameScore.appendChild(player1);
         playersNameScore.appendChild(player2);
-        
+
         document.getElementById(parentID).appendChild(playersNameScore);
+    }
+    
+    createButtons(parentID) {
+        let buttons = document.createElement("div");
+        buttons.id = "gameButtons";
+
+        let restartButton = utils.createButton("restart", "submit", "Restart");
+        let quitButton = utils.createButton("quit", "submit", "Quit");
+
+        buttons.appendChild(restartButton);
+        buttons.appendChild(quitButton);
+
+        document.getElementById(parentID).appendChild(buttons);
     }
 }
 

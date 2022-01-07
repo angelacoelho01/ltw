@@ -40,7 +40,7 @@ body {
     border: none;
 }
 
-#resumeButton, #playButton {
+#resumeButton, #playButton, #restart, #quit{
     background-color: #2E3440;
     color: #88C0D0;
     border-radius: 5px;
@@ -48,7 +48,7 @@ body {
     font-family: 'Roboto', sans-serif;
     border: none;
     margin: auto;
-    padding: 5px;
+    width: 100px;
 }
 
 .board {
@@ -181,3 +181,11 @@ body {
     font-size: xxx-large;
 }
 
+#gameButtons {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 50px;
+    left: 70px;
+    gap: 10px;
+}
