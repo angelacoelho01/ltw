@@ -1,4 +1,6 @@
-import { createButton, loadPage, removeClass, removeElementsByClassName } from "../utils/utils.js";
+import { createButton, getElementCopy, loadPage, removeClass, removeElementsByClassName } from "../utils/utils.js";
+
+let isUserLogged = false;
 
 export function validateRegister() {
     let isUsernameValid = false;
@@ -91,25 +93,29 @@ export function validateLogin(pageToLoad) {
 
             // Load play page and add username
             document.getElementById("login").remove();
-            document.getElementById("register").remove();
+            let registerButton = document.getElementById("register");   /* Reutilize register button for logout */
+            registerButton.innerHTML = "Logout";
 
             let user = document.createElement("div");
             user.id = "user";
             user.innerHTML = username.value;
 
-            let logout = createButton("logout", "submit", "Logout");
-
             let authenticationField = document.getElementById("authentication");
-            authenticationField.appendChild(user);
-            authenticationField.appendChild(logout);
+            authenticationField.insertBefore(user, registerButton);
 
             document.body.appendChild(pageToLoad);
 
             // Clear input fields
             username.value = "";
             password.value = "";
+            isUserLogged = true;
         } else {
             console.log("Can't sign in user...");
         }
     });
 }
+
+export function isUserLoggedIn() {
+    return isUserLogged;
+}
+

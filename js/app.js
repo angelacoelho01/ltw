@@ -9,19 +9,23 @@ let gameView = new GameView();
 let game = new Game();
 let login = new Login();
 let register = new Register();
-let headerCopy = getElementCopy("header");
+let appCopy = getElementCopy("app");
 
 document.getElementById("login").addEventListener("click", function() {
-    let containerCopy = getElementCopy("app");
     loadPage();
     login.userLogin();
-    auth.validateLogin(containerCopy);
+    auth.validateLogin(appCopy);
 });
 
 document.getElementById("register").addEventListener("click", function() {
     loadPage();
-    register.userRegister();  
-    auth.validateRegister();
+
+    if(auth.isUserLoggedIn()) {
+        window.location.reload();                     
+    } else {
+        register.userRegister();  
+        auth.validateRegister();
+    }
 });
 
 document.getElementById("bt").addEventListener("click", function(){
