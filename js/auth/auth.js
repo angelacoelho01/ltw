@@ -1,4 +1,4 @@
-import { createButton, getElementCopy, loadPage, removeClass, removeElementsByClassName } from "../utils/utils.js";
+import * as utils from "../utils/utils.js";
 
 let isUserLogged = false;
 
@@ -89,7 +89,7 @@ export function validateLogin(pageToLoad) {
 
         if(username.value == validUser.username && password.value == validUser.password) {
             console.log("User signed in successfully!");
-            loadPage();
+            utils.loadPage();
 
             // Load play page and add username
             document.getElementById("login").remove();
@@ -102,6 +102,9 @@ export function validateLogin(pageToLoad) {
 
             let authenticationField = document.getElementById("authentication");
             authenticationField.insertBefore(user, registerButton);
+
+            // Make Play in header active
+            utils.addClass("play", "active");
 
             document.body.appendChild(pageToLoad);
 

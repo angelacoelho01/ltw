@@ -150,13 +150,9 @@ body {
     width: 40px;
     height: 40px;
     margin: 5px;
-    shape-outside: ellipse(50% 50%);
-    clip-path: ellipse(50% 50%);
+    shape-outside: ellipse(20% 50%);
+    clip-path: ellipse(20% 50%);
     background: #88C0D0;
-    border-style: solid;
-    border-color: #2E3440;
-    border-width: 8px;
-    border-radius: 50%;
 }
 
 #user {
