@@ -246,3 +246,10 @@ header {
     border: none;
 }
 
+.number_of_seeds {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    color: #2E3440;
+}
+

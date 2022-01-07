@@ -58,10 +58,14 @@ class Board {
                 seed.className = "seed";
                 pit.appendChild(seed);
             }
+            let numberOfSeeds = document.createElement("div");
+            numberOfSeeds.innerText = seedsPerPit[i];
+            numberOfSeeds.className = "number_of_seeds";
+            pit.appendChild(numberOfSeeds);
         }
     }
     updateNumberOfSeeds(parent, numberOfSeeds){
-        if(parent.childElementCount != numberOfSeeds){
+        if(parent.childElementCount != parseInt(numberOfSeeds) + 1){
             this.removeChilds(parent);
             this.addNewSeeds(parent, numberOfSeeds);
         }
@@ -81,5 +85,9 @@ class Board {
             seed.className = "seed";
             parent.appendChild(seed);
         }
+        let seedsPerPit = document.createElement("div");
+        seedsPerPit.innerText = numberOfSeeds;
+        seedsPerPit.className = "number_of_seeds";
+        parent.appendChild(seedsPerPit);
     }
 }

@@ -50,7 +50,7 @@ export default class Game {
                     seedsToBeMoved++;
                 }
             } else if (seedsToBeMoved == i && this.pits[startPit + i] == 0 && this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] != 0){
-                if (player==this.player1 && this.isInPlayer1Pits(startPit + i)){
+                if (this.currentPlayerplayer==this.player1 && this.isInPlayer1Pits(startPit + i)){
                     this.pits[this.rightCapturePit] += parseInt(this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)]) + 1;
                     this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] = 0;
                 }
