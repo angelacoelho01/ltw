@@ -3,7 +3,7 @@ export default class GameView {
 
     createBoard(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit, game){
         this.board = new Board(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit);
-        this.createPlayersScore(game);
+        this.createPlayersScore(parentID, game);
     }
     updateGameView(game){
         let divPits = document.querySelectorAll(".small_pit");
@@ -47,7 +47,7 @@ export default class GameView {
         return player;
     }
 
-    createPlayersScore(game) {
+    createPlayersScore(parentID, game) {
         let playersNameScore = document.createElement("div");
         playersNameScore.id = "playersNameScore";
 
@@ -56,9 +56,8 @@ export default class GameView {
 
         playersNameScore.appendChild(player1);
         playersNameScore.appendChild(player2);
-
-        let board = document.getElementsByClassName("board").firstChild;
-        document.body.insertBefore(playersNameScore, board);
+        
+        document.getElementById(parentID).appendChild(playersNameScore);
     }
 }
 
