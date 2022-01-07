@@ -7,6 +7,7 @@ export default class Game {
         this.pits = new Array(numberOfPitsPerPlayer*2 + 2).fill(numberOfSeedsPerPit);
         this.player1 = new Player(name1);
         this.player2 = new Player(name2);
+        this.numberOfSeedsPerPit = numberOfSeedsPerPit;
         this.numberOfPitsPerPlayer = numberOfPitsPerPlayer;
         this.totalNumberOfPits = this.numberOfPitsPerPlayer*2 + 2;
         this.rightCapturePit = numberOfPitsPerPlayer;
@@ -15,6 +16,14 @@ export default class Game {
         this.pits[this.rightCapturePit] = 0;
         this.currentPlayer = this.player1;
         this.hasStarted = true;
+    }
+
+    getNumberOfPitsPerPlayer() {
+        return this.numberOfPitsPerPlayer;
+    }
+
+    getNumberOfSeedsPerPit() {
+        return this.numberOfSeedsPerPit;
     }
 
     getPlayer1() {

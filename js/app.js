@@ -36,6 +36,7 @@ document.getElementById("bt").addEventListener("click", function(){
     game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, auth.getUsername(), "mafarrico");
     gameView.createBoard("app", numberOfPitsPerPlayer, game.pits, game);
     addEventListenerInPits();
+    //addEventListenerRestartButton();
 });
 
 document.getElementById("play").addEventListener("click", function() {
@@ -132,6 +133,8 @@ function addEventListenerInPits(){
     pitsArray.forEach(pit => {
         pit.addEventListener("click", function() {
             console.log(pitsArray.indexOf(pit));
+            addEventListenerQuitButton();
+            addEventListenerRestartButton();
            if (pitsArray.indexOf(pit) >= game.numberOfPitsPerPlayer){
                playRound(pitsArray.indexOf(pit) - game.numberOfPitsPerPlayer); 
            } else {
@@ -139,6 +142,24 @@ function addEventListenerInPits(){
            }
            gameView.updateGameView(game);
         });
+    });
+}
+
+function addEventListenerRestartButton() {
+    document.getElementById("restart").addEventListener("click", function() {
+        removeElementsByClassName("board");
+        document.getElementById("playersNameScore").remove();
+        document.getElementById("gameButtons").remove();
+        game.create(game.getNumberOfPitsPerPlayer(), game.getNumberOfSeedsPerPit(), auth.getUsername(), "mafarrico");
+        gameView.createBoard("app", game.getNumberOfPitsPerPlayer(), game.pits, game);
+        addEventListenerInPits();
+    });
+}
+
+function addEventListenerQuitButton() {
+    console.log("Enters here");
+    document.getElementById("quit").addEventListener("click", function() {
+        console.log("here");
     });
 }
 
