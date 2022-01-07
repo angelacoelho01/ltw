@@ -26,12 +26,12 @@ export default class Game {
     }
 
 
-    playRound(startPit, player){
+    playRound(startPit){
         let seedsToBeMoved = this.pits[startPit];
         this.pits[startPit] = 0;
         for(let i = 1; i <= seedsToBeMoved; i++){
             if (startPit + i == this.leftCapturePit){
-                if (player == this.player1){
+                if (this.currentPlayer == this.player1){
                     seedsToBeMoved = seedsToBeMoved -i + 1;
                     startPit = -1;
                     i = 0;
@@ -43,7 +43,7 @@ export default class Game {
                     if (seedsToBeMoved == 0) return; //The player will play again
                 }
             } else if (startPit + i == this.rightCapturePit){
-                if (player == this.player1){
+                if (this.currentPlayer == this.player1){
                     this.pits[startPit + i]++;
                     if (seedsToBeMoved == i) return; //The player will play again
                 } else {
@@ -54,7 +54,7 @@ export default class Game {
                     this.pits[this.rightCapturePit] += parseInt(this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)]) + 1;
                     this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] = 0;
                 }
-                else if( player == this.player2 && this.isInPlayer2Pits(startPit + i)){
+                else if( this.currentPlayer == this.player2 && this.isInPlayer2Pits(startPit + i)){
                     this.pits[this.leftCapturePit] += parseInt(this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)]) + 1;
                     this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] = 0;
                 }
