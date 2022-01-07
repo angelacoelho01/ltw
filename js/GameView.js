@@ -1,8 +1,9 @@
 export default class GameView {
     constructor(){}
 
-    createBoard(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit){
+    createBoard(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit, game){
         this.board = new Board(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit);
+        this.createPlayersScore(game);
     }
     updateGameView(game){
         let divPits = document.querySelectorAll(".small_pit");

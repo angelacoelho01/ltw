@@ -34,8 +34,7 @@ document.getElementById("bt").addEventListener("click", function(){
     let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
     let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
     game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, auth.getUsername(), "mafarrico");
-    gameView.createPlayersScore(game);
-    gameView.createBoard("app", numberOfPitsPerPlayer, game.pits);
+    gameView.createBoard("app", numberOfPitsPerPlayer, game.pits, game);
     addEventListenerInPits();
 });
 
@@ -72,7 +71,7 @@ document.getElementById("instructions").addEventListener("click", function() {
 
     if(game.hasStarted) {
         document.getElementById("resumeButton").addEventListener("click", function() {
-            gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits);
+            gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits, game);
             addEventListenerInPits();
             removeClass("active");
             addClass("play", "active");
@@ -111,7 +110,7 @@ document.getElementById("scoreboard").addEventListener("click", function() {
 
     if(game.hasStarted) {
         document.getElementById("resumeButton").addEventListener("click", function() {
-            gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits);
+            gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits, game);
             addEventListenerInPits();
             removeClass("active");
             addClass("play", "active");
