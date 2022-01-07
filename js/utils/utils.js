@@ -1,3 +1,10 @@
+export function getElementCopy(id) {
+    let source = document.getElementById(id);
+    let target = document.getElementById(id);
+    let returnedTarget = Object.assign(target, source);
+    return returnedTarget;
+}
+
 export function removeElementsByClassName(className) {
     let elements = document.getElementsByClassName(className);
     for(let i = 0; i < elements.length; i++) elements[i].remove();

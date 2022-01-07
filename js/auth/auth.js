@@ -1,3 +1,5 @@
+import { createButton, loadPage, removeClass, removeElementsByClassName } from "../utils/utils.js";
+
 export function validateRegister() {
     let isUsernameValid = false;
     let isPasswordValid = false;
@@ -60,7 +62,7 @@ export function validateRegister() {
     });
 }
 
-export function validateLogin() {
+export function validateLogin(pageToLoad) {
     let username = document.querySelector("#usernameInput");
     let password = document.querySelector("#passwordInput");
     let userList = [];
@@ -85,6 +87,27 @@ export function validateLogin() {
 
         if(username.value == validUser.username && password.value == validUser.password) {
             console.log("User signed in successfully!");
+            loadPage();
+
+            // Load play page and add username
+            document.getElementById("login").remove();
+            document.getElementById("register").remove();
+
+            let user = document.createElement("div");
+            user.id = "user";
+            user.innerHTML = username.value;
+
+            let logout = createButton("logout", "submit", "Logout");
+
+            let authenticationField = document.getElementById("authentication");
+            authenticationField.appendChild(user);
+            authenticationField.appendChild(logout);
+
+            document.body.appendChild(pageToLoad);
+
+            // Clear input fields
+            username.value = "";
+            password.value = "";
         } else {
             console.log("Can't sign in user...");
         }

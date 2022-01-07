@@ -2,18 +2,20 @@ import { Login } from './auth/Login.js';
 import { Register } from './auth/Register.js';
 import Game from './Game.js';
 import GameView from "./GameView.js"
-import {removeElementsByClassName, removeClass, createButton, addClass, loadPage} from './utils/utils.js';
+import {removeElementsByClassName, removeClass, createButton, addClass, loadPage, getElementCopy} from './utils/utils.js';
 import * as auth from './auth/auth.js';
 
 let gameView = new GameView();
 let game = new Game();
 let login = new Login();
 let register = new Register();
+let headerCopy = getElementCopy("header");
 
 document.getElementById("login").addEventListener("click", function() {
+    let containerCopy = getElementCopy("app");
     loadPage();
     login.userLogin();
-    auth.validateLogin();
+    auth.validateLogin(containerCopy);
 });
 
 document.getElementById("register").addEventListener("click", function() {
