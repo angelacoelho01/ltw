@@ -1,23 +1,14 @@
-import { Login } from './Login.js';
-import { Register } from './Register.js';
+import { Login } from './auth/Login.js';
+import { Register } from './auth/Register.js';
 import Game from './Game.js';
 import GameView from "./GameView.js"
-import {removeElementsByClassName, removeClass, createButton, addClass, loadPage} from './utils.js';
+import {removeElementsByClassName, removeClass, createButton, addClass, loadPage} from './utils/utils.js';
+import * as auth from './auth/auth.js';
 
 let gameView = new GameView();
 let game = new Game();
 let login = new Login();
 let register = new Register();
-
-document.getElementById("bt").addEventListener("click", function(){
-    let nPits = document.getElementById("selectNPits");
-    let nSeeds = document.getElementById("selectNSeeds");
-    let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
-    let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
-    game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, "sonso", "mafarrico");
-    gameView.createBoard("app", numberOfPitsPerPlayer, game.pits);
-    addEventListenerInPits();
-});
 
 document.getElementById("login").addEventListener("click", function() {
     loadPage();
@@ -31,10 +22,21 @@ document.getElementById("login").addEventListener("click", function() {
 document.getElementById("register").addEventListener("click", function() {
     loadPage();
     register.userRegister();  
+    auth.validateRegister();
     
     document.getElementById("registerSubmitButton").addEventListener("click", function() {
         window.location.reload();
     });
+});
+
+document.getElementById("bt").addEventListener("click", function(){
+    let nPits = document.getElementById("selectNPits");
+    let nSeeds = document.getElementById("selectNSeeds");
+    let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
+    let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
+    game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, "sonso", "mafarrico");
+    gameView.createBoard("app", numberOfPitsPerPlayer, game.pits);
+    addEventListenerInPits();
 });
 
 document.getElementById("play").addEventListener("click", function() {
@@ -57,7 +59,7 @@ document.getElementById("instructions").addEventListener("click", function() {
         let resumeButton = createButton("resumeButton", "submit", "Resume");
         instructions.appendChild(resumeButton);
     }
-    
+
     let playButton = createButton("playButton", "submit", "Play") ;
     instructions.appendChild(playButton);
 

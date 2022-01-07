@@ -1,0 +1,45 @@
+#loginSubmitButton, #registerSubmitButton {
+    background-color: #2E3440;
+    color: #88C0D0;
+    border-radius: 5px;
+    font-size: large;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    margin: auto;
+    padding: 5px;
+}
+
+
+.auth {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    gap: 10px;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.inputFields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 200px;
+}
+
+#usernameLabel, #passwordLabel {
+    font-size: small;
+    font-weight: normal;
+}
+
+.inputFields input {
+    background-color: transparent;
+    border: 1px solid #2E3440;
+    border-radius: 5px;
+}
+
+
+  

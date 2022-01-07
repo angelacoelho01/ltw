@@ -26,3 +26,12 @@ export function createButton(id, type, innerHTML) {
 
     return button;
 }
+
+export function createInput(id, type, placeholder) {
+    let input = document.createElement("input");
+    input.id = id;
+    input.type = type;
+    input.placeholder = placeholder;
+
+    return input;
+}
