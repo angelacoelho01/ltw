@@ -64,7 +64,7 @@ export function validateRegister() {
     });
 }
 
-export function validateLogin(pageToLoad) {
+export function validateLogin(pageToLoad, game) {
     let username = document.querySelector("#usernameInput");
     let password = document.querySelector("#passwordInput");
     let userList = [];
@@ -107,6 +107,11 @@ export function validateLogin(pageToLoad) {
             utils.addClass("play", "active");
 
             document.body.appendChild(pageToLoad);
+
+            // Update player1 Name in play page
+            let player1Name = document.getElementById("player1Name"); 
+            if(player1Name != undefined) player1Name.innerHTML = username.value;
+            game.player1.name = username.value;
 
             // Clear input fields
             username.value = "";

@@ -14,7 +14,7 @@ let appCopy = getElementCopy("app");
 document.getElementById("login").addEventListener("click", function() {
     loadPage(game);
     login.userLogin();
-    auth.validateLogin(appCopy);
+    auth.validateLogin(appCopy, game);
 });
 
 document.getElementById("register").addEventListener("click", function() {
