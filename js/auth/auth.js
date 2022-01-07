@@ -1,8 +1,8 @@
-let isUsernameValid = false;
-let isPasswordValid = false;
-let isConfirmPasswordValid = false;
-
 export function validateRegister() {
+    let isUsernameValid = false;
+    let isPasswordValid = false;
+    let isConfirmPasswordValid = false;
+
     // Check username
     let username = document.querySelector("#usernameInput");
     username.addEventListener("keyup", function() {
@@ -54,10 +54,39 @@ export function validateRegister() {
             );
 
             localStorage.setItem('userList', JSON.stringify(userList));
-
         } else {
             console.log("Error in registration.");
         }
     });
 }
 
+export function validateLogin() {
+    let username = document.querySelector("#usernameInput");
+    let password = document.querySelector("#passwordInput");
+    let userList = [];
+    let validUser = {
+        username: '',
+        password: ''
+    };
+    let login = document.querySelector("#loginSubmitButton");
+
+    login.addEventListener("click", function() {
+        userList = JSON.parse(localStorage.getItem('userList'));
+
+        // Search username and password in userList
+        userList.forEach(function (element) {
+            if(username.value == element.username && password.value == element.password) {
+                validUser = {
+                    username: element.username,
+                    password: element.password
+                };
+            }
+        });
+
+        if(username.value == validUser.username && password.value == validUser.password) {
+            console.log("User signed in successfully!");
+        } else {
+            console.log("Can't sign in user...");
+        }
+    });
+}

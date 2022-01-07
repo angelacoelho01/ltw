@@ -13,20 +13,13 @@ let register = new Register();
 document.getElementById("login").addEventListener("click", function() {
     loadPage();
     login.userLogin();
-
-    document.getElementById("loginSubmitButton").addEventListener("click", function() {
-        window.location.reload();
-    });
+    auth.validateLogin();
 });
 
 document.getElementById("register").addEventListener("click", function() {
     loadPage();
     register.userRegister();  
     auth.validateRegister();
-    
-    document.getElementById("registerSubmitButton").addEventListener("click", function() {
-        window.location.reload();
-    });
 });
 
 document.getElementById("bt").addEventListener("click", function(){
