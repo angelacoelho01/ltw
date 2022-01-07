@@ -21,6 +21,43 @@ export default class GameView {
                 this.board.updateNumberOfSeeds(leftCapturePit, game.pits[i]);
             }
         }
+
+        // Update players Score
+        document.getElementById("player1Score").innerHTML = game.getPlayer1().getPoints();
+        document.getElementById("player2Score").innerHTML = game.getPlayer2().getPoints();
+    }
+
+    createPlayerScore(playerNumber, playerName, playerScore) {
+        let player = document.createElement("div");
+        player.id = "player" + playerNumber + "NameScore";
+
+        let playerNameDiv = document.createElement("div");
+        playerNameDiv.id = "player" + playerNumber + "Name";
+        playerNameDiv.innerHTML = playerName;
+
+
+        let playerScoreDiv = document.createElement("div");
+        playerScoreDiv.id = "player" + playerNumber + "Score";
+        playerScoreDiv.innerHTML = playerScore;
+
+        player.appendChild(playerNameDiv);
+        player.appendChild(playerScoreDiv);
+        
+        return player;
+    }
+
+    createPlayersScore(game) {
+        let playersNameScore = document.createElement("div");
+        playersNameScore.id = "playersNameScore";
+
+        let player1 = this.createPlayerScore(1, game.getPlayer1().getName(), game.getPlayer1().getPoints());
+        let player2 = this.createPlayerScore(2, game.getPlayer2().getName(), game.getPlayer2().getPoints());
+
+        playersNameScore.appendChild(player1);
+        playersNameScore.appendChild(player2);
+
+        let board = document.getElementsByClassName("board").firstChild;
+        document.body.insertBefore(playersNameScore, board);
     }
 }
 

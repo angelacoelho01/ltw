@@ -159,4 +159,25 @@ body {
     padding: 0px 50px;
 }
 
+#playersNameScore {
+    display: flex;
+    justify-content: center;
+    gap: 1500px;
+    padding: 50px;
+
+}
+
+#player1NameScore, #player2NameScore {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#player1Name, #player2Name {
+    font-size: x-large;
+}
+
+#player1Score, #player2Score {
+    font-size: xxx-large;
+}
 

@@ -33,7 +33,8 @@ document.getElementById("bt").addEventListener("click", function(){
     let nSeeds = document.getElementById("selectNSeeds");
     let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
     let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
-    game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, "sonso", "mafarrico");
+    game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, auth.getUsername(), "mafarrico");
+    gameView.createPlayersScore(game);
     gameView.createBoard("app", numberOfPitsPerPlayer, game.pits);
     addEventListenerInPits();
 });

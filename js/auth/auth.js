@@ -122,3 +122,8 @@ export function isUserLoggedIn() {
     return isUserLogged;
 }
 
+export function getUsername() {
+    let user = document.getElementById("user");
+    return isUserLogged ? user.innerHTML : "sonso";
+}
+

@@ -17,6 +17,14 @@ export default class Game {
         this.hasStarted = true;
     }
 
+    getPlayer1() {
+        return this.player1;
+    }
+
+    getPlayer2() {
+        return this.player2;
+    }
+
     isInPlayer1Pits(index){
         return index < this.numberOfPitsPerPlayer;
     }
@@ -24,7 +32,6 @@ export default class Game {
     isInPlayer2Pits(index){
         return index > this.numberOfPitsPerPlayer && index < this.totalNumberOfPits - 1;
     }
-
 
     playRound(startPit, player){
         let seedsToBeMoved = this.pits[startPit];
@@ -92,5 +99,13 @@ class Player{
     constructor(name) {
         this.name = name;
         this.points = 0;
+    }
+
+    getName() {
+        return this.name;
+    }
+
+    getPoints() {
+        return this.points;
     }
 }
