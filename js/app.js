@@ -12,13 +12,13 @@ let register = new Register();
 let appCopy = getElementCopy("app");
 
 document.getElementById("login").addEventListener("click", function() {
-    loadPage();
+    loadPage(game);
     login.userLogin();
     auth.validateLogin(appCopy);
 });
 
 document.getElementById("register").addEventListener("click", function() {
-    loadPage();
+    loadPage(game);
 
     if(auth.isUserLoggedIn()) {
         window.location.reload();                     
@@ -44,7 +44,7 @@ document.getElementById("play").addEventListener("click", function() {
 });
 
 document.getElementById("instructions").addEventListener("click", function() {
-    loadPage();
+    loadPage(game);
     addClass("instructions", "active");
 
     let container = document.createElement("container");
@@ -81,7 +81,7 @@ document.getElementById("instructions").addEventListener("click", function() {
 });
 
 document.getElementById("scoreboard").addEventListener("click", function() {
-    loadPage();
+    loadPage(game);
     addClass("scoreboard", "active");
 
     let container = document.createElement("container");

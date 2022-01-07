@@ -20,9 +20,10 @@ export function addClass(id, className) {
     element.classList.add(className);
 }
 
-export function loadPage() {
+export function loadPage(game) {
     removeElementsByClassName("container");
     removeClass("active");
+    if(document.getElementById("playersNameScore") != null) document.getElementById("playersNameScore").remove();
 }
 
 export function createButton(id, type, innerHTML) {
