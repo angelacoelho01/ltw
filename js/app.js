@@ -15,6 +15,7 @@ document.getElementById("bt").addEventListener("click", function(){
     let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
     game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, "sonso", "mafarrico");
     gameView.createBoard("app", numberOfPitsPerPlayer, game.pits);
+    gameView.createGameMessage("app", game);
     addEventListenerInPits();
 });
 
@@ -127,7 +128,8 @@ function addEventListenerInPits(){
            } else {
                playRound(game.numberOfPitsPerPlayer*2 - pitsArray.indexOf(pit)); 
            }
-           gameView.updateGameView(game);
+           gameView.updateGameBoard(game);
+           gameView.updateGameMessages(game);
         });
     });
 }

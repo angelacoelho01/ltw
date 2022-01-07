@@ -4,7 +4,17 @@ export default class GameView {
     createBoard(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit){
         this.board = new Board(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit);
     }
-    updateGameView(game){
+    createGameMessage(parentID, game){
+        let parent = document.getElementById(parentID);
+        let message = document.createElement("div");
+        message.className = "message";
+        message.innerText = game.currentPlayer == game.player1 ? 
+            "It's " + game.player1.name + "'s turn!" :
+             "It's " + game.player2.name + "'s turn!";
+        parent.appendChild(message);
+        
+    }
+    updateGameBoard(game){
         let divPits = document.querySelectorAll(".small_pit");
         let leftCapturePit = document.querySelector(".left_capture_pit");
         let rightCapturePit = document.querySelector(".right_capture_pit");
@@ -21,6 +31,12 @@ export default class GameView {
                 this.board.updateNumberOfSeeds(leftCapturePit, game.pits[i]);
             }
         }
+    }
+    updateGameMessages(game){
+        let message = document.querySelector(".message");
+        message.innerText = game.currentPlayer == game.player1 ? 
+            "It's " + game.player1.name + "'s turn!" :
+            "It's " + game.player2.name + "'s turn!";
     }
 }
 

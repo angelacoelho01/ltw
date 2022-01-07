@@ -253,3 +253,15 @@ header {
     color: #2E3440;
 }
 
+.message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    top: 85%;
+    left: 44%;
+    color: #2E3440;
+    font-family: 'Roboto', sans-serif;
+    font-size: 35px;
+}
+
