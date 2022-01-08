@@ -23,7 +23,8 @@ document.getElementById("register").addEventListener("click", function() {
     loadPage(game);
 
     if(auth.isUserLoggedIn()) {
-        loadInitialPage();                 
+        loadInitialPage();  
+        addEventListenerPlayButton();               
     } else {
         register.userRegister();  
         auth.validateRegister();
@@ -46,6 +47,7 @@ function addEventListenerPlayButton() {
 
 document.getElementById("play").addEventListener("click", function() {
     loadInitialPage();
+    addEventListenerPlayButton();
 });
 
 document.getElementById("instructions").addEventListener("click", function() {
