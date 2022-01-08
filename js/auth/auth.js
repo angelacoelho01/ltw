@@ -111,7 +111,6 @@ export function validateLogin(pageToLoad, game) {
             // Update player1 Name in play page
             let player1Name = document.getElementById("player1Name"); 
             if(player1Name != undefined) player1Name.innerHTML = username.value;
-            game.player1.name = username.value;
 
             // Clear input fields
             username.value = "";

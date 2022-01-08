@@ -2,7 +2,7 @@ import { Login } from './auth/Login.js';
 import { Register } from './auth/Register.js';
 import Game from './Game.js';
 import GameView from "./GameView.js"
-import {removeElementsByClassName, removeClass, createButton, addClass, loadPage, getElementCopy} from './utils/utils.js';
+import {removeElementsByClassName, removeClass, createButton, addClass, loadPage, getElementCopy, loadInitialPage} from './utils/utils.js';
 import * as auth from './auth/auth.js';
 
 let gameView = new GameView();
@@ -10,6 +10,8 @@ let game = new Game();
 let login = new Login();
 let register = new Register();
 let appCopy = getElementCopy("app");
+
+console.log("Logged in?" + auth.isUserLoggedIn());
 
 document.getElementById("login").addEventListener("click", function() {
     loadPage(game);
@@ -21,33 +23,36 @@ document.getElementById("register").addEventListener("click", function() {
     loadPage(game);
 
     if(auth.isUserLoggedIn()) {
-        window.location.reload();                     
+        loadInitialPage();                 
     } else {
         register.userRegister();  
         auth.validateRegister();
     }
 });
 
-document.getElementById("bt").addEventListener("click", function(){
-    let nPits = document.getElementById("selectNPits");
-    let nSeeds = document.getElementById("selectNSeeds");
-    let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
-    let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
-    game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, auth.getUsername(), "mafarrico");
-    gameView.createBoard("app", numberOfPitsPerPlayer, game.pits, game);
-    addEventListenerInPits();
-    //addEventListenerRestartButton();
-});
+function addEventListenerPlayButton() {
+    document.getElementById("bt").addEventListener("click", function(){
+        console.log("here");
+        let nPits = document.getElementById("selectNPits");
+        let nSeeds = document.getElementById("selectNSeeds");
+        let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
+        let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
+        game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, auth.getUsername(), "mafarrico");
+        gameView.createBoard("app", numberOfPitsPerPlayer, game.pits, game);
+        addEventListenerInPits();
+    });
+}
+
 
 document.getElementById("play").addEventListener("click", function() {
-    window.location.reload();
+    loadInitialPage();
 });
 
 document.getElementById("instructions").addEventListener("click", function() {
     loadPage(game);
     addClass("instructions", "active");
 
-    let container = document.createElement("container");
+    let container = document.createElement("div");
     container.className = "container";
     container.id = "app";
 
@@ -67,7 +72,8 @@ document.getElementById("instructions").addEventListener("click", function() {
     document.body.appendChild(container);
 
     document.getElementById("playButton").addEventListener("click", function() {
-        window.location.reload();
+        loadInitialPage();
+        addEventListenerPlayButton();
     });
 
     if(game.hasStarted) {
@@ -84,7 +90,7 @@ document.getElementById("scoreboard").addEventListener("click", function() {
     loadPage(game);
     addClass("scoreboard", "active");
 
-    let container = document.createElement("container");
+    let container = document.createElement("div");
     container.className = "container";
     container.id = "app";
 
@@ -106,7 +112,8 @@ document.getElementById("scoreboard").addEventListener("click", function() {
     document.body.appendChild(container);
 
     document.getElementById("playButton").addEventListener("click", function() {
-        window.location.reload();
+        loadInitialPage();
+        addEventListenerPlayButton();
     });
 
     if(game.hasStarted) {
@@ -124,17 +131,17 @@ function playRound(pitIndex){
         game.playRound(pitIndex, game.currentPlayer);
         console.log(game.currentPlayer);
         console.log(game.pits);
-    }
+    } else addEventListenerPlayButton();
 }
 
 function addEventListenerInPits(){
     const pits = document.querySelectorAll(".small_pit");
     const pitsArray = Array.from(pits);
+    addEventListenerQuitButton();
+    addEventListenerRestartButton();
     pitsArray.forEach(pit => {
         pit.addEventListener("click", function() {
             console.log(pitsArray.indexOf(pit));
-            addEventListenerQuitButton();
-            addEventListenerRestartButton();
            if (pitsArray.indexOf(pit) >= game.numberOfPitsPerPlayer){
                playRound(pitsArray.indexOf(pit) - game.numberOfPitsPerPlayer); 
            } else {
@@ -153,14 +160,29 @@ function addEventListenerRestartButton() {
         game.create(game.getNumberOfPitsPerPlayer(), game.getNumberOfSeedsPerPit(), auth.getUsername(), "mafarrico");
         gameView.createBoard("app", game.getNumberOfPitsPerPlayer(), game.pits, game);
         addEventListenerInPits();
+        //console.log(appCopy);
+        //document.getElementById("app").remove();
+        //document.body.appendChild(appCopy);
+
     });
 }
 
 function addEventListenerQuitButton() {
-    console.log("Enters here");
     document.getElementById("quit").addEventListener("click", function() {
-        console.log("here");
+        console.log("quit");
+        loadInitialPage();
+        game.endGame();
+        game.hasStarted = false;
+        addEventListenerPlayButton();
     });
 }
 
+
+if(game.hasStarted) {
+    addEventListenerRestartButton();
+    addEventListenerQuitButton();
+} else {
+    addEventListenerPlayButton();
+
+}
 
