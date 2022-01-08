@@ -89,7 +89,7 @@ export function validateLogin(pageToLoad, game) {
 
         if(username.value == validUser.username && password.value == validUser.password) {
             console.log("User signed in successfully!");
-            utils.loadPage();
+            utils.cleanPage();
 
             // Load play page and add username
             document.getElementById("login").remove();
@@ -124,6 +124,10 @@ export function validateLogin(pageToLoad, game) {
 
 export function isUserLoggedIn() {
     return isUserLogged;
+}
+
+export function userLogout() {
+    isUserLogged = false;
 }
 
 export function getUsername() {
