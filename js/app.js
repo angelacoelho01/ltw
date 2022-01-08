@@ -24,7 +24,8 @@ document.getElementById("register").addEventListener("click", function() {
 
     if(auth.isUserLoggedIn()) {
         console.log("here");    
-        pageLoader.loadInitialHeader();          
+        //pageLoader.loadInitialHeader();          
+        window.location.reload();
     } else {
         utils.cleanPage();
         register.userRegister();  
@@ -58,6 +59,8 @@ document.getElementById("instructions").addEventListener("click", function() {
     pageLoader.loadInstructionsPage(game);
 
     document.getElementById("playButton").addEventListener("click", function() {
+        utils.removeClass("active");
+        utils.addClass("play", "active");
         pageLoader.loadInitialPage();
         addEventListenerPlayButton();
     });
@@ -78,6 +81,8 @@ document.getElementById("scoreboard").addEventListener("click", function() {
     pageLoader.loadScoreboardPage(game);
 
     document.getElementById("playButton").addEventListener("click", function() {
+        utils.removeClass("active");
+        utils.addClass("play", "active");
         pageLoader.loadInitialPage();
         addEventListenerPlayButton();
     });
