@@ -46,6 +46,8 @@ function addEventListenerPlayButton() {
 
 
 document.getElementById("play").addEventListener("click", function() {
+    utils.removeClass("active");
+    utils.addClass("play", "active");
     pageLoader.loadInitialPage();
     addEventListenerPlayButton();
 });
