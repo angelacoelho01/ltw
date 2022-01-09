@@ -15,6 +15,7 @@ export default class Game {
         this.pits[this.rightCapturePit] = 0;
         this.currentPlayer = this.player1;
         this.hasStarted = true;
+        this.playAgain = false;
     }
 
     isInPlayer1Pits(index){
@@ -40,12 +41,18 @@ export default class Game {
                     seedsToBeMoved-=i;
                     startPit = -1;
                     i = 0;
-                    if (seedsToBeMoved == 0) return; //The player will play again
+                    if (seedsToBeMoved == 0) {
+                        this.playAgain = true;
+                        return;
+                    }
                 }
             } else if (startPit + i == this.rightCapturePit){
                 if (this.currentPlayer == this.player1){
                     this.pits[startPit + i]++;
-                    if (seedsToBeMoved == i) return; //The player will play again
+                    if (seedsToBeMoved == i) {
+                        this.playAgain = true;
+                        return;
+                    }
                 } else {
                     seedsToBeMoved++;
                 }
@@ -66,6 +73,7 @@ export default class Game {
                 this.pits[startPit + i]++;
             }
         }
+        this.playAgain = false;
         this.currentPlayer = this.currentPlayer == this.player1 ? this.player2 : this.player1;
     }
 

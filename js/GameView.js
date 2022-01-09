@@ -34,9 +34,10 @@ export default class GameView {
     }
     updateGameMessages(game){
         let message = document.querySelector(".message");
-        message.innerText = game.currentPlayer == game.player1 ? 
-            "It's " + game.player1.name + "'s turn!" :
-            "It's " + game.player2.name + "'s turn!";
+        console.log(game.playAgain);
+        message.innerText = game.playAgain ? 
+        game.currentPlayer.name + ", play again!" :
+        "It's " + game.currentPlayer.name + "'s turn!";
     }
 }
 
