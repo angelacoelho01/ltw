@@ -95,10 +95,9 @@ export default class Game {
         return player1HasNoSeeds || player2HasNoSeeds;
     }
     getBestMove(){ //ESQUECER ESTE ESPARGUETE E COLOCAR UM ARRAY NOS ARGUMENTOS DO PLAYROUND
-        console.log(this.currentPlayer);
         let bestPit = 0;
         let seedsInBestPit = 0;
-        let currPits = Object.assign({}, this.pits)
+        let currPits = Object.assign({}, this.pits);
         let currPlayer = this.currentPlayer == this.player1 ? this.player1 : this.player2;
         if (this.currentPlayer == this.player1){
             for (let i = 0; i < this.rightCapturePit; i++){
@@ -121,7 +120,6 @@ export default class Game {
                 this.currentPlayer = currPlayer;
             }
         }
-        console.log(this.currentPlayer);
         return bestPit;
     }
 }

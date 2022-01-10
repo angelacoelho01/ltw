@@ -112,6 +112,8 @@ document.getElementById("scoreboard").addEventListener("click", function() {
 function playRound(pitIndex){
     if(!game.endGame()){
         game.playRound(pitIndex);
+        gameView.updateGameBoard(game);
+        gameView.updateGameMessages(game);
     }
 }
 
@@ -126,9 +128,11 @@ function addEventListenerInPits(){
            } else {
                playRound(game.numberOfPitsPerPlayer*2 - pitsArray.indexOf(pit)); 
            }
-            gameView.updateGameBoard(game);
-            gameView.updateGameMessages(game);
-            playRound(game.getBestMove());
+            if(game.currentPlayer == game.player2) {
+                do{
+                    playRound(game.getBestMove());  
+                } while(game.playAgain);
+            }
         });
     });
 }
