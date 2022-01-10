@@ -114,6 +114,8 @@ function playRound(pitIndex){
         game.playRound(pitIndex);
         gameView.updateGameBoard(game);
         gameView.updateGameMessages(game);
+    } else {
+        gameView.showEndGameMessage(game);
     }
 }
 

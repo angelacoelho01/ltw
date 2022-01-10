@@ -16,6 +16,7 @@ export default class Game {
         this.currentPlayer = this.player1;
         this.hasStarted = true;
         this.playAgain = false;
+        this.winner = null;
     }
 
     isInPlayer1Pits(index){
@@ -92,7 +93,17 @@ export default class Game {
                 break;
             }
         }
-        return player1HasNoSeeds || player2HasNoSeeds;
+        if (player1HasNoSeeds || player2HasNoSeeds){
+            if (this.pits[this.rightCapturePit] > this.pits[this.leftCapturePit]){
+                this.winner = this.player1;
+                this.winner.points = this.pits[this.rightCapturePit];
+            } else {
+                this.winner = this.player2;
+                this.winner = pits[this.leftCapturePit];
+            }
+            return true;
+        }
+        return false;
     }
     getBestMove(){ //ESQUECER ESTE ESPARGUETE E COLOCAR UM ARRAY NOS ARGUMENTOS DO PLAYROUND
         let bestPit = 0;

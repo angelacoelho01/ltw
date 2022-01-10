@@ -34,10 +34,13 @@ export default class GameView {
     }
     updateGameMessages(game){
         let message = document.querySelector(".message");
-        console.log(game.playAgain);
         message.innerText = game.playAgain ? 
         game.currentPlayer.name + ", play again!" :
         "It's " + game.currentPlayer.name + "'s turn!";
+    }
+    showEndGameMessage(game){
+        let message = document.querySelector(".message");
+        message.innerText = "Game over. Congratulations " + game.winner.name + " you've won!";
     }
 }
 
