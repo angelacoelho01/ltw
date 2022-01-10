@@ -117,11 +117,15 @@ function playRound(pitIndex){
     }
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function addEventListenerInPits(){
     const pits = document.querySelectorAll(".small_pit");
     const pitsArray = Array.from(pits);
     pitsArray.forEach(pit => {
-        pit.addEventListener("click", function() {
+        pit.addEventListener("click", async function() {
             console.log(pitsArray.indexOf(pit));
            if (pitsArray.indexOf(pit) >= game.numberOfPitsPerPlayer){
                playRound(pitsArray.indexOf(pit) - game.numberOfPitsPerPlayer); 
@@ -130,6 +134,7 @@ function addEventListenerInPits(){
            }
             if(game.currentPlayer == game.player2) {
                 do{
+                    await sleep(2000);
                     playRound(game.getBestMove());  
                 } while(game.playAgain);
             }
