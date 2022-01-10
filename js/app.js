@@ -111,9 +111,7 @@ document.getElementById("scoreboard").addEventListener("click", function() {
 
 function playRound(pitIndex){
     if(!game.endGame()){
-        game.playRound(pitIndex, game.currentPlayer);
-        console.log(game.currentPlayer);
-        console.log(game.pits);
+        game.playRound(pitIndex);
     }
 }
 
@@ -128,8 +126,9 @@ function addEventListenerInPits(){
            } else {
                playRound(game.numberOfPitsPerPlayer*2 - pitsArray.indexOf(pit)); 
            }
-           gameView.updateGameBoard(game);
-           gameView.updateGameMessages(game);
+            gameView.updateGameBoard(game);
+            gameView.updateGameMessages(game);
+            playRound(game.getBestMove());
         });
     });
 }
