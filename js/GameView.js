@@ -47,6 +47,11 @@ export default class GameView {
         message.innerText = "Game over. Congratulations " + game.winner.name + " you've won!";
     }
 
+    resetGameMessages(parentID, game) {
+        utils.removeElementsByClassName("message");
+        this.createGameMessage(parentID, game);
+    }
+
     createPlayerName(playerNumber, playerName) {
         let player = document.createElement("div");
         player.id = "player" + playerNumber;
@@ -67,8 +72,8 @@ export default class GameView {
         let player1 = this.createPlayerName(1, game.getPlayer1().getName());
         let player2 = this.createPlayerName(2, game.getPlayer2().getName());
 
-        playersName.appendChild(player1);
         playersName.appendChild(player2);
+        playersName.appendChild(player1);
 
         document.getElementById(parentID).appendChild(playersName);
     }

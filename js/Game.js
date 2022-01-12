@@ -156,6 +156,7 @@ class Player{
     constructor(name) {
         this.name = name;
         this.points = 0;
+        this.password = null;
     }
 
     getName() {
@@ -164,5 +165,13 @@ class Player{
 
     getPoints() {
         return this.points;
+    }
+
+    getPassword() {
+        return this.password
+    }
+
+    setPassword(password) {
+        this.password = password;
     }
 }

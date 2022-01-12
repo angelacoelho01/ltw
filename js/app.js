@@ -23,11 +23,8 @@ document.getElementById("login").addEventListener("click", function() {
 document.getElementById("register").addEventListener("click", function() {
 
     if(auth.isUserLoggedIn()) {
-        console.log("here");    
-        //pageLoader.loadInitialHeader();          
         window.location.reload();
     } else {
-        console.log("enters here");
         utils.cleanPage();
         register.userRegister();  
         auth.validateRegister(login, appCopy);
@@ -147,6 +144,7 @@ function addEventListenerRestartButton() {
         document.getElementById("playersNames").remove();
         document.getElementById("gameButtons").remove();
         game.create(game.getNumberOfPitsPerPlayer(), game.getNumberOfSeedsPerPit(), auth.getUsername(), "mafarrico");
+        gameView.resetGameMessages("app", game);
         gameView.createBoard("app", game.getNumberOfPitsPerPlayer(), game.pits, game);
         addEventListenerInPits();
     });
