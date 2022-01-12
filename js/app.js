@@ -144,4 +144,34 @@ function addEventListenerInPits(){
     });
 }
 
+const url = 'http://twserver.alunos.dcc.fc.up.pt:8008/';
+
+async function register(nick, pass) {
+    await fetch(url + 'register', {
+    method: 'POST',
+    body: JSON.stringify({
+        nick: nick, 
+        pass: pass
+    }),
+})
+    .then(response => response.json())
+    .then(//VAI PARA A PÁGINA DE LOGIN
+        );
+}
+
+async function join() {
+await fetch(url + 'join', {
+    method: 'POST',
+    body: JSON.stringify({
+        group:"63", 
+        nick: game.player1.name, 
+        password: "123456",
+        size: game.numberOfPitsPerPlayer,
+        initial: game.numberOfSeedsPerPit
+    }),
+})
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
+
 
