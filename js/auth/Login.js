@@ -4,6 +4,7 @@ export class Login {
     constructor() {
         this.container = document.createElement("div");
         this.container.className = "container";
+        this.container.id = "app";
 
         this.login = document.createElement("div");
         this.login.className = "auth";

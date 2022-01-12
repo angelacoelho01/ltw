@@ -17,7 +17,7 @@ console.log("Logged in?" + auth.isUserLoggedIn());
 document.getElementById("login").addEventListener("click", function() {
     utils.cleanPage();
     login.userLogin();
-    auth.validateLogin(appCopy, game);
+    auth.validateLogin(appCopy);
 });
 
 document.getElementById("register").addEventListener("click", function() {
@@ -27,9 +27,10 @@ document.getElementById("register").addEventListener("click", function() {
         //pageLoader.loadInitialHeader();          
         window.location.reload();
     } else {
+        console.log("enters here");
         utils.cleanPage();
         register.userRegister();  
-        auth.validateRegister();
+        auth.validateRegister(login, appCopy);
     }
 });
 

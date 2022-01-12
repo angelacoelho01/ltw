@@ -1,8 +1,9 @@
 import * as utils from "../utils/utils.js";
+import * as pageLoader from "../PageLoader.js";
 
 let isUserLogged = false;
 
-export function validateRegister() {
+export function validateRegister(login, appCopy) {
     let isUsernameValid = false;
     let isPasswordValid = false;
     let isConfirmPasswordValid = false;
@@ -58,6 +59,10 @@ export function validateRegister() {
             );
 
             localStorage.setItem('userList', JSON.stringify(userList));
+
+            utils.cleanPage();
+            login.userLogin();
+            validateLogin(appCopy);
         } else {
             console.log("Error in registration.");
         }

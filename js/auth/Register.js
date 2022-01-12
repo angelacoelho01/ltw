@@ -4,6 +4,7 @@ export class Register {
     constructor() {
         this.container = document.createElement("div");
         this.container.className = "container";
+        this.container.id = "app";
 
         this.register = document.createElement("div");
         this.register.className = "auth";
