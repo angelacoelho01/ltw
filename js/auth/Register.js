@@ -1,7 +1,10 @@
+import { createButton, createInput } from '../utils/utils.js';
+
 export class Register {
     constructor() {
         this.container = document.createElement("div");
         this.container.className = "container";
+        this.container.id = "app";
 
         this.register = document.createElement("div");
         this.register.className = "auth";
@@ -27,33 +30,19 @@ export class Register {
     }
 
     createInputFields() {
-        let username = document.createElement("input");
-        let password = document.createElement("input");
-        let confirmPassword = document.createElement("input");
+        let usernameInput = createInput("usernameInput", "text", "Username");
+        let passwordInput = createInput("passwordInput", "password", "Password");
+        let confirmPasswordInput = createInput("confirmPasswordInput", "password", "Confirm Password");
 
-        username.className = "username";
-        password.className = "password";
-        confirmPassword.className = "confirmPassword";
-
-        username.placeholder = "Username";
-        password.placeholder = "Password";
-        confirmPassword.placeholder = "Confirm passowrd";
-
-        this.inputFields.appendChild(username);
-        this.inputFields.appendChild(password);
-        this.inputFields.appendChild(confirmPassword);
+        this.inputFields.appendChild(usernameInput);
+        this.inputFields.appendChild(passwordInput);
+        this.inputFields.appendChild(confirmPasswordInput);
 
         this.register.appendChild(this.inputFields);
     }
 
     createSubmitButton() {
-        let button = document.createElement("button");
-
-        button.id = "registerSubmitButton";
-        button.type = "submit";
-        button.innerHTML = "Register";
-
+        let button = createButton("registerSubmitButton", "submit", "Register");
         this.register.appendChild(button);
-
     }
 }

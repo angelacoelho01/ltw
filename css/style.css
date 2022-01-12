@@ -1,83 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+@import url('/css/header.css');
+@import url('/css/auth.css');
 
 body {
     background-color: #ECEFF4;
     font-family: 'Roboto', sans-serif;
     margin: 0;
-}
-
-header {
-    overflow: hidden;
-    background-color: #2E3440;
-    display: flex;
-    justify-content: space-between;
-}
-
-.headerLeft {
-    display: flex;
-    vertical-align: middle;
-    align-items: center;
-    gap: 100px;
-}
-
-.logo_image {
-    width: 100px;
-    height: 100px;
-    vertical-align: middle;
-}
-
-.logo_text {
-    color: #88C0D0;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size:xx-large;
-    vertical-align: middle;
-}
-
-.commands {
-    display: flex;
-    gap: 20px;
-}
-
-.commands a {
-    font-family: 'Roboto', sans-serif;
-    vertical-align: middle;
-    text-decoration: none;
-    padding: 20px 20px;
-    color: white;
-}
-
-.commands a:hover {
-    background-color: #88C0D0;
-    color: white;
-    border-radius: 5px;
-}
-
-.authentication {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding-right: 50px;
-}
-
-.auth {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    gap: 10px;
-    font-size: xx-large;
-    font-weight: bold;
-}
-
-.inputFields {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    width: 200px;
 }
 
 .gameOptions {
@@ -112,17 +40,7 @@ header {
     border: none;
 }
 
-#login, #register {
-    color: #2E3440;
-    background-color: #88C0D0;
-    border-radius: 5px;
-    font-size: large;
-    font-family: 'Roboto', sans-serif;
-    border: none;
-    padding: 5px;
-}
-
-#loginSubmitButton, #registerSubmitButton {
+#resumeButton, #playButton, #restart, #quit{
     background-color: #2E3440;
     color: #88C0D0;
     border-radius: 5px;
@@ -130,7 +48,7 @@ header {
     font-family: 'Roboto', sans-serif;
     border: none;
     margin: auto;
-    padding: 5px;
+    width: 100px;
 }
 
 .board {
@@ -142,10 +60,10 @@ header {
     margin: auto;
     width: 1300px;
     height: 500px;
-    background: #e5e9f0;
+    background: #434c5e;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 50px;
     border-style: solid;
     border-color: #434c5e;
     border-width: 8px;
@@ -188,7 +106,7 @@ header {
     background: #e5e9f0;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 30px;
     border-style: solid;
     border-color: #434c5e;
     border-width: 8px;
@@ -205,7 +123,7 @@ header {
     background: #e5e9f0;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 30px;
     border-style: solid;
     border-color: #434c5e;
     border-width: 8px;
@@ -221,7 +139,7 @@ header {
     background: #e5e9f0;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 30px;
     border-style: solid;
     border-color: #434c5e;
     border-width: 8px;
@@ -237,13 +155,16 @@ header {
     background: #88C0D0;
 }
 
-#back {
-    background-color: #2E3440;
-    color: #88C0D0;
-    border-radius: 5px;
-    font-size: large;
-    font-family: 'Roboto', sans-serif;
-    border: none;
+#user {
+    padding: 0px 50px;
+}
+
+#playersNames {
+    display: flex;
+    justify-content: center;
+    gap: 1500px;
+    padding: 50px;
+
 }
 
 .number_of_seeds {
@@ -264,3 +185,21 @@ header {
     font-size: 35px;
 }
 
+#player1Name, #player2Name {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#player1Name, #player2Name {
+    font-size: x-large;
+}
+
+#gameButtons {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 50px;
+    left: 70px;
+    gap: 10px;
+}
