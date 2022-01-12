@@ -16,6 +16,8 @@ export default class Game {
         this.pits[this.rightCapturePit] = 0;
         this.currentPlayer = this.player1;
         this.hasStarted = true;
+        this.playAgain = false;
+        this.winner = null;
     }
 
     getNumberOfPitsPerPlayer() {
@@ -42,12 +44,13 @@ export default class Game {
         return index > this.numberOfPitsPerPlayer && index < this.totalNumberOfPits - 1;
     }
 
-    playRound(startPit, player){
+
+    playRound(startPit){
         let seedsToBeMoved = this.pits[startPit];
         this.pits[startPit] = 0;
         for(let i = 1; i <= seedsToBeMoved; i++){
             if (startPit + i == this.leftCapturePit){
-                if (player == this.player1){
+                if (this.currentPlayer == this.player1){
                     seedsToBeMoved = seedsToBeMoved -i + 1;
                     startPit = -1;
                     i = 0;
@@ -56,21 +59,27 @@ export default class Game {
                     seedsToBeMoved-=i;
                     startPit = -1;
                     i = 0;
-                    if (seedsToBeMoved == 0) return; //The player will play again
+                    if (seedsToBeMoved == 0) {
+                        this.playAgain = true;
+                        return;
+                    }
                 }
             } else if (startPit + i == this.rightCapturePit){
-                if (player == this.player1){
+                if (this.currentPlayer == this.player1){
                     this.pits[startPit + i]++;
-                    if (seedsToBeMoved == i) return; //The player will play again
+                    if (seedsToBeMoved == i) {
+                        this.playAgain = true;
+                        return;
+                    }
                 } else {
                     seedsToBeMoved++;
                 }
             } else if (seedsToBeMoved == i && this.pits[startPit + i] == 0 && this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] != 0){
-                if (player==this.player1 && this.isInPlayer1Pits(startPit + i)){
+                if (this.currentPlayer ==this.player1 && this.isInPlayer1Pits(startPit + i)){
                     this.pits[this.rightCapturePit] += parseInt(this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)]) + 1;
                     this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] = 0;
                 }
-                else if( player == this.player2 && this.isInPlayer2Pits(startPit + i)){
+                else if( this.currentPlayer == this.player2 && this.isInPlayer2Pits(startPit + i)){
                     this.pits[this.leftCapturePit] += parseInt(this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)]) + 1;
                     this.pits[this.numberOfPitsPerPlayer*2 - (startPit + i)] = 0;
                 }
@@ -82,6 +91,7 @@ export default class Game {
                 this.pits[startPit + i]++;
             }
         }
+        this.playAgain = false;
         this.currentPlayer = this.currentPlayer == this.player1 ? this.player2 : this.player1;
     }
 
@@ -100,7 +110,45 @@ export default class Game {
                 break;
             }
         }
-        return player1HasNoSeeds || player2HasNoSeeds;
+        if (player1HasNoSeeds || player2HasNoSeeds){
+            if (this.pits[this.rightCapturePit] > this.pits[this.leftCapturePit]){
+                this.winner = this.player1;
+                this.winner.points = this.pits[this.rightCapturePit];
+            } else {
+                this.winner = this.player2;
+                this.winner = pits[this.leftCapturePit];
+            }
+            return true;
+        }
+        return false;
+    }
+    getBestMove(){ //ESQUECER ESTE ESPARGUETE E COLOCAR UM ARRAY NOS ARGUMENTOS DO PLAYROUND
+        let bestPit = 0;
+        let seedsInBestPit = 0;
+        let currPits = Object.assign({}, this.pits);
+        let currPlayer = this.currentPlayer == this.player1 ? this.player1 : this.player2;
+        if (this.currentPlayer == this.player1){
+            for (let i = 0; i < this.rightCapturePit; i++){
+                this.playRound(i);
+                if (seedsInBestPit < this.pits[this.rightCapturePit]) {
+                    bestPit = i;
+                    seedsInBestPit = this.pits[this.rightCapturePit];
+                }
+                this.pits = Object.assign({}, currPits);
+                this.currentPlayer = currPlayer;
+            }
+        } else {
+            for (let i = parseInt(this.rightCapturePit) + 1; i < this.leftCapturePit; i++){
+                this.playRound(i);
+                if (seedsInBestPit < this.pits[this.leftCapturePit]) {
+                    bestPit = i;
+                    seedsInBestPit = this.pits[this.leftCapturePit];
+                }
+                this.pits = Object.assign({}, currPits);
+                this.currentPlayer = currPlayer;
+            }
+        }
+        return bestPit;
     }
 }
 
@@ -108,6 +156,7 @@ class Player{
     constructor(name) {
         this.name = name;
         this.points = 0;
+        this.password = null;
     }
 
     getName() {
@@ -116,5 +165,13 @@ class Player{
 
     getPoints() {
         return this.points;
+    }
+
+    getPassword() {
+        return this.password
+    }
+
+    setPassword(password) {
+        this.password = password;
     }
 }

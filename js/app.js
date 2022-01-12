@@ -23,11 +23,8 @@ document.getElementById("login").addEventListener("click", function() {
 document.getElementById("register").addEventListener("click", function() {
 
     if(auth.isUserLoggedIn()) {
-        console.log("here");    
-        //pageLoader.loadInitialHeader();          
         window.location.reload();
     } else {
-        console.log("enters here");
         utils.cleanPage();
         register.userRegister();  
         auth.validateRegister(login, appCopy);
@@ -41,6 +38,7 @@ function addEventListenerPlayButton() {
         let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
         let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
         game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, auth.getUsername(), "mafarrico");
+        gameView.createGameMessage("app", game);
         gameView.createBoard("app", numberOfPitsPerPlayer, game.pits, game);
         addEventListenerInPits();
     });
@@ -100,10 +98,21 @@ document.getElementById("scoreboard").addEventListener("click", function() {
 
 function playRound(pitIndex){
     if(!game.endGame()){
-        game.playRound(pitIndex, game.currentPlayer);
+        game.playRound(pitIndex);
+        gameView.updateGameBoard(game);
+        gameView.updateGameMessages(game);
+    } else {
+        gameView.showEndGameMessage(game);
+        addEventListenerPlayButton();
+    }
+    /*    game.playRound(pitIndex, game.currentPlayer);
         console.log(game.currentPlayer);
         console.log(game.pits);
-    } else addEventListenerPlayButton();
+    } else addEventListenerPlayButton();*/
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 function addEventListenerInPits(){
@@ -112,14 +121,19 @@ function addEventListenerInPits(){
     addEventListenerQuitButton();
     addEventListenerRestartButton();
     pitsArray.forEach(pit => {
-        pit.addEventListener("click", function() {
+        pit.addEventListener("click", async function() {
             console.log(pitsArray.indexOf(pit));
            if (pitsArray.indexOf(pit) >= game.numberOfPitsPerPlayer){
                playRound(pitsArray.indexOf(pit) - game.numberOfPitsPerPlayer); 
            } else {
                playRound(game.numberOfPitsPerPlayer*2 - pitsArray.indexOf(pit)); 
            }
-           gameView.updateGameView(game);
+            if(game.currentPlayer == game.player2) {
+                do{
+                    await sleep(2000);
+                    playRound(game.getBestMove());  
+                } while(game.playAgain);
+            }
         });
     });
 }
@@ -130,6 +144,7 @@ function addEventListenerRestartButton() {
         document.getElementById("playersNames").remove();
         document.getElementById("gameButtons").remove();
         game.create(game.getNumberOfPitsPerPlayer(), game.getNumberOfSeedsPerPit(), auth.getUsername(), "mafarrico");
+        gameView.resetGameMessages("app", game);
         gameView.createBoard("app", game.getNumberOfPitsPerPlayer(), game.pits, game);
         addEventListenerInPits();
     });

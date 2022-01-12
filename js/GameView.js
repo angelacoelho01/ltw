@@ -8,7 +8,17 @@ export default class GameView {
         this.createPlayerNames(parentID, game);
         this.createButtons(parentID);
     }
-    updateGameView(game){
+    createGameMessage(parentID, game){
+        let parent = document.getElementById(parentID);
+        let message = document.createElement("div");
+        message.className = "message";
+        message.innerText = game.currentPlayer == game.player1 ? 
+            "It's " + game.player1.name + "'s turn!" :
+             "It's " + game.player2.name + "'s turn!";
+        parent.appendChild(message);
+        
+    }
+    updateGameBoard(game){
         let divPits = document.querySelectorAll(".small_pit");
         let leftCapturePit = document.querySelector(".left_capture_pit");
         let rightCapturePit = document.querySelector(".right_capture_pit");
@@ -25,6 +35,21 @@ export default class GameView {
                 this.board.updateNumberOfSeeds(leftCapturePit, game.pits[i]);
             }
         }
+    }
+    updateGameMessages(game){
+        let message = document.querySelector(".message");
+        message.innerText = game.playAgain ? 
+            game.currentPlayer.name + ", play again!" :
+            "It's " + game.currentPlayer.name + "'s turn!";
+    }
+    showEndGameMessage(game){
+        let message = document.querySelector(".message");
+        message.innerText = "Game over. Congratulations " + game.winner.name + " you've won!";
+    }
+
+    resetGameMessages(parentID, game) {
+        utils.removeElementsByClassName("message");
+        this.createGameMessage(parentID, game);
     }
 
     createPlayerName(playerNumber, playerName) {
@@ -47,8 +72,8 @@ export default class GameView {
         let player1 = this.createPlayerName(1, game.getPlayer1().getName());
         let player2 = this.createPlayerName(2, game.getPlayer2().getName());
 
-        playersName.appendChild(player1);
         playersName.appendChild(player2);
+        playersName.appendChild(player1);
 
         document.getElementById(parentID).appendChild(playersName);
     }
@@ -101,10 +126,14 @@ class Board {
                 seed.className = "seed";
                 pit.appendChild(seed);
             }
+            let numberOfSeeds = document.createElement("div");
+            numberOfSeeds.innerText = seedsPerPit[i];
+            numberOfSeeds.className = "number_of_seeds";
+            pit.appendChild(numberOfSeeds);
         }
     }
     updateNumberOfSeeds(parent, numberOfSeeds){
-        if(parent.childElementCount != numberOfSeeds){
+        if(parent.childElementCount != parseInt(numberOfSeeds) + 1){
             this.removeChilds(parent);
             this.addNewSeeds(parent, numberOfSeeds);
         }
@@ -124,5 +153,9 @@ class Board {
             seed.className = "seed";
             parent.appendChild(seed);
         }
+        let seedsPerPit = document.createElement("div");
+        seedsPerPit.innerText = numberOfSeeds;
+        seedsPerPit.className = "number_of_seeds";
+        parent.appendChild(seedsPerPit);
     }
 }
