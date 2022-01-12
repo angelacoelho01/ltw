@@ -1,0 +1,76 @@
+header {
+    overflow: hidden;
+    background-color: #2E3440;
+    display: flex;
+    justify-content: space-between;
+}
+
+#headerLeft {
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+    gap: 100px;
+}
+
+.logo_image {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+}
+
+.logo_text {
+    color: #88C0D0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size:xx-large;
+    vertical-align: middle;
+}
+
+.commands {
+    display: flex;
+    gap: 20px;
+}
+
+.commands a {
+    font-family: 'Roboto', sans-serif;
+    vertical-align: middle;
+    text-decoration: none;
+    padding: 20px 20px;
+    color: white;
+}
+
+.commands a:hover {
+    background-color: #88C0D0;
+    color: white;
+    border-radius: 5px;
+}
+
+#login, #register, #logout {
+    color: #88C0D0;
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: medium;
+    font-family: 'Roboto', sans-serif;
+    border-color: #88C0D0;
+    border-style: solid;
+    padding: 5px;
+}
+
+#authentication {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-right: 50px;
+}
+
+.active {
+    background-color: #88C0D0;
+    border-radius: 5px;
+}
+
+#user {
+    display: flex;
+    align-items: center;
+    color: #88C0D0;
+    font-size: large;
+}
