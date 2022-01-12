@@ -5,7 +5,7 @@ export default class GameView {
 
     createBoard(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit, game){
         this.board = new Board(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit);
-        this.createPlayersScore(parentID, game);
+        this.createPlayerNames(parentID, game);
         this.createButtons(parentID);
     }
     updateGameView(game){
@@ -25,42 +25,32 @@ export default class GameView {
                 this.board.updateNumberOfSeeds(leftCapturePit, game.pits[i]);
             }
         }
-
-        // Update players Score
-        document.getElementById("player1Score").innerHTML = game.getPlayer1().getPoints();
-        document.getElementById("player2Score").innerHTML = game.getPlayer2().getPoints();
     }
 
-    createPlayerScore(playerNumber, playerName, playerScore) {
+    createPlayerName(playerNumber, playerName) {
         let player = document.createElement("div");
-        player.id = "player" + playerNumber + "NameScore";
+        player.id = "player" + playerNumber;
 
         let playerNameDiv = document.createElement("div");
         playerNameDiv.id = "player" + playerNumber + "Name";
         playerNameDiv.innerHTML = playerName;
 
-
-        let playerScoreDiv = document.createElement("div");
-        playerScoreDiv.id = "player" + playerNumber + "Score";
-        playerScoreDiv.innerHTML = playerScore;
-
         player.appendChild(playerNameDiv);
-        player.appendChild(playerScoreDiv);
-        
+
         return player;
     }
 
-    createPlayersScore(parentID, game) {
-        let playersNameScore = document.createElement("div");
-        playersNameScore.id = "playersNameScore";
+    createPlayerNames(parentID, game) {
+        let playersName = document.createElement("div");
+        playersName.id = "playersNames";
 
-        let player1 = this.createPlayerScore(1, game.getPlayer1().getName(), game.getPlayer1().getPoints());
-        let player2 = this.createPlayerScore(2, game.getPlayer2().getName(), game.getPlayer2().getPoints());
+        let player1 = this.createPlayerName(1, game.getPlayer1().getName());
+        let player2 = this.createPlayerName(2, game.getPlayer2().getName());
 
-        playersNameScore.appendChild(player1);
-        playersNameScore.appendChild(player2);
+        playersName.appendChild(player1);
+        playersName.appendChild(player2);
 
-        document.getElementById(parentID).appendChild(playersNameScore);
+        document.getElementById(parentID).appendChild(playersName);
     }
     
     createButtons(parentID) {

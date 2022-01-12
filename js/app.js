@@ -126,7 +126,7 @@ function addEventListenerInPits(){
 function addEventListenerRestartButton() {
     document.getElementById("restart").addEventListener("click", function() {
         utils.removeElementsByClassName("board");
-        document.getElementById("playersNameScore").remove();
+        document.getElementById("playersNames").remove();
         document.getElementById("gameButtons").remove();
         game.create(game.getNumberOfPitsPerPlayer(), game.getNumberOfSeedsPerPit(), auth.getUsername(), "mafarrico");
         gameView.createBoard("app", game.getNumberOfPitsPerPlayer(), game.pits, game);

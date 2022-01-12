@@ -159,7 +159,7 @@ body {
     padding: 0px 50px;
 }
 
-#playersNameScore {
+#playersNames {
     display: flex;
     justify-content: center;
     gap: 1500px;
@@ -167,7 +167,7 @@ body {
 
 }
 
-#player1NameScore, #player2NameScore {
+#player1Name, #player2Name {
     display: flex;
     gap: 10px;
     align-items: center;
@@ -175,10 +175,6 @@ body {
 
 #player1Name, #player2Name {
     font-size: x-large;
-}
-
-#player1Score, #player2Score {
-    font-size: xxx-large;
 }
 
 #gameButtons {
