@@ -7,6 +7,7 @@ export default class Game {
         this.pits = new Array(numberOfPitsPerPlayer*2 + 2).fill(numberOfSeedsPerPit);
         this.player1 = new Player(name1);
         this.player2 = new Player(name2);
+        this.numberOfSeedsPerPit = numberOfSeedsPerPit;
         this.numberOfPitsPerPlayer = numberOfPitsPerPlayer;
         this.totalNumberOfPits = this.numberOfPitsPerPlayer*2 + 2;
         this.rightCapturePit = numberOfPitsPerPlayer;
@@ -17,6 +18,22 @@ export default class Game {
         this.hasStarted = true;
     }
 
+    getNumberOfPitsPerPlayer() {
+        return this.numberOfPitsPerPlayer;
+    }
+
+    getNumberOfSeedsPerPit() {
+        return this.numberOfSeedsPerPit;
+    }
+
+    getPlayer1() {
+        return this.player1;
+    }
+
+    getPlayer2() {
+        return this.player2;
+    }
+
     isInPlayer1Pits(index){
         return index < this.numberOfPitsPerPlayer;
     }
@@ -24,7 +41,6 @@ export default class Game {
     isInPlayer2Pits(index){
         return index > this.numberOfPitsPerPlayer && index < this.totalNumberOfPits - 1;
     }
-
 
     playRound(startPit, player){
         let seedsToBeMoved = this.pits[startPit];
@@ -92,5 +108,13 @@ class Player{
     constructor(name) {
         this.name = name;
         this.points = 0;
+    }
+
+    getName() {
+        return this.name;
+    }
+
+    getPoints() {
+        return this.points;
     }
 }

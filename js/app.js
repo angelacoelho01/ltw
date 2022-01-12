@@ -1,111 +1,100 @@
-import { Login } from './Login.js';
-import { Register } from './Register.js';
+import { Login } from './auth/Login.js';
+import { Register } from './auth/Register.js';
 import Game from './Game.js';
 import GameView from "./GameView.js"
+import * as utils from './utils/utils.js';
+import * as auth from './auth/auth.js';
+import * as pageLoader from './PageLoader.js';
 
 let gameView = new GameView();
 let game = new Game();
 let login = new Login();
 let register = new Register();
+let appCopy = utils.getElementCopy("app");
 
-document.getElementById("bt").addEventListener("click", function(){
-    let nPits = document.getElementById("selectNPits");
-    let nSeeds = document.getElementById("selectNSeeds");
-    let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
-    let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
-    game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, "sonso", "mafarrico");
-    gameView.createBoard("app", numberOfPitsPerPlayer, game.pits);
-    addEventListenerInPits();
-});
+console.log("Logged in?" + auth.isUserLoggedIn());
 
 document.getElementById("login").addEventListener("click", function() {
-    let elementsLogin = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsLogin.length; i++) elementsLogin[i].remove();
-
+    utils.cleanPage();
     login.userLogin();
-
-    document.getElementById("loginSubmitButton").addEventListener("click", function() {
-        console.log("login here");
-        window.location.reload();
-    });
+    auth.validateLogin(appCopy, game);
 });
 
 document.getElementById("register").addEventListener("click", function() {
-    let elementsRegister = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsRegister.length; i++) elementsRegister[i].remove();
 
-    register.userRegister();  
-    
-    document.getElementById("registerSubmitButton").addEventListener("click", function() {
-        console.log("register here");
+    if(auth.isUserLoggedIn()) {
+        console.log("here");    
+        //pageLoader.loadInitialHeader();          
         window.location.reload();
+    } else {
+        utils.cleanPage();
+        register.userRegister();  
+        auth.validateRegister();
+    }
+});
+
+function addEventListenerPlayButton() {
+    document.getElementById("bt").addEventListener("click", function(){
+        let nPits = document.getElementById("selectNPits");
+        let nSeeds = document.getElementById("selectNSeeds");
+        let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
+        let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
+        game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, auth.getUsername(), "mafarrico");
+        gameView.createBoard("app", numberOfPitsPerPlayer, game.pits, game);
+        addEventListenerInPits();
     });
+}
+
+
+document.getElementById("play").addEventListener("click", function() {
+    utils.removeClass("active");
+    utils.addClass("play", "active");
+    pageLoader.loadInitialPage();
+    addEventListenerPlayButton();
 });
 
 document.getElementById("instructions").addEventListener("click", function() {
-    let elementsInstruction = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsInstruction.length; i++) elementsInstruction[i].remove();
+    utils.cleanPage();
+    utils.addClass("instructions", "active");
+    pageLoader.loadInstructionsPage(game);
 
-    let container = document.createElement("container");
-    container.className = "container";
-    container.id = "app";
-
-    let instructions = document.createElement("div");
-    instructions.className = "auth";
-    instructions.innerHTML = "Instructions";
-
-    let button = document.createElement("button");
-
-    button.id = "back";
-    button.type = "submit";
-    button.innerHTML = "Back";
-        
-    instructions.appendChild(button);
-
-    container.appendChild(instructions);
-    document.body.appendChild(container);
-
-    document.getElementById("back").addEventListener("click", function() {
-        if (game.hasStarted) {
-            gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits);
-            addEventListenerInPits();
-        }
-        else window.location.reload();
+    document.getElementById("playButton").addEventListener("click", function() {
+        utils.removeClass("active");
+        utils.addClass("play", "active");
+        pageLoader.loadInitialPage();
+        addEventListenerPlayButton();
     });
+
+    if(game.hasStarted) {
+        document.getElementById("resumeButton").addEventListener("click", function() {
+            gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits, game);
+            addEventListenerInPits();
+            utils.removeClass("active");
+            utils.addClass("play", "active");
+        });
+    }
 });
 
 document.getElementById("scoreboard").addEventListener("click", function() {
-    let elementsScoreboard = document.getElementsByClassName("container");
-    for(let i = 0; i < elementsScoreboard.length; i++) elementsScoreboard[i].remove();
+    utils.cleanPage();
+    utils.addClass("scoreboard", "active"); 
+    pageLoader.loadScoreboardPage(game);
 
-    let container = document.createElement("container");
-    container.className = "container";
-    container.id = "app";
-
-    let scoreboard = document.createElement("container");
-    scoreboard.className = "auth";
-    scoreboard.innerHTML = "Scoreboard";
-    container.appendChild(scoreboard);
-
-    let button = document.createElement("button");
-
-    button.id = "back";
-    button.type = "submit";
-    button.innerHTML = "Back";
-        
-    scoreboard.appendChild(button);
-
-    container.appendChild(scoreboard);
-
-    document.body.appendChild(container);
-
-    document.getElementById("back").addEventListener("click", function() {
-        if (game.hasStarted) {
-            gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits);
-            addEventListenerInPits();
-        }
-        else window.location.reload();
+    document.getElementById("playButton").addEventListener("click", function() {
+        utils.removeClass("active");
+        utils.addClass("play", "active");
+        pageLoader.loadInitialPage();
+        addEventListenerPlayButton();
     });
+
+    if(game.hasStarted) {
+        document.getElementById("resumeButton").addEventListener("click", function() {
+            gameView.createBoard("app", game.numberOfPitsPerPlayer, game.pits, game);
+            addEventListenerInPits();
+            utils.removeClass("active");
+            utils.addClass("play", "active");
+        });
+    }
 });
 
 function playRound(pitIndex){
@@ -113,12 +102,14 @@ function playRound(pitIndex){
         game.playRound(pitIndex, game.currentPlayer);
         console.log(game.currentPlayer);
         console.log(game.pits);
-    }
+    } else addEventListenerPlayButton();
 }
 
 function addEventListenerInPits(){
     const pits = document.querySelectorAll(".small_pit");
     const pitsArray = Array.from(pits);
+    addEventListenerQuitButton();
+    addEventListenerRestartButton();
     pitsArray.forEach(pit => {
         pit.addEventListener("click", function() {
             console.log(pitsArray.indexOf(pit));
@@ -132,4 +123,33 @@ function addEventListenerInPits(){
     });
 }
 
+function addEventListenerRestartButton() {
+    document.getElementById("restart").addEventListener("click", function() {
+        utils.removeElementsByClassName("board");
+        document.getElementById("playersNames").remove();
+        document.getElementById("gameButtons").remove();
+        game.create(game.getNumberOfPitsPerPlayer(), game.getNumberOfSeedsPerPit(), auth.getUsername(), "mafarrico");
+        gameView.createBoard("app", game.getNumberOfPitsPerPlayer(), game.pits, game);
+        addEventListenerInPits();
+    });
+}
+
+function addEventListenerQuitButton() {
+    document.getElementById("quit").addEventListener("click", function() {
+        console.log("quit");
+        pageLoader.loadInitialPage();
+        game.endGame();
+        game.hasStarted = false;
+        addEventListenerPlayButton();
+    });
+}
+
+
+if(game.hasStarted) {
+    addEventListenerRestartButton();
+    addEventListenerQuitButton();
+} else {
+    addEventListenerPlayButton();
+
+}
 

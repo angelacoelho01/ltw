@@ -1,8 +1,12 @@
+import * as utils from './utils/utils.js';
+
 export default class GameView {
     constructor(){}
 
-    createBoard(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit){
+    createBoard(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit, game){
         this.board = new Board(parentID, numberOfPitsPerPlayer, numberOfSeedsPerPit);
+        this.createPlayerNames(parentID, game);
+        this.createButtons(parentID);
     }
     updateGameView(game){
         let divPits = document.querySelectorAll(".small_pit");
@@ -21,6 +25,45 @@ export default class GameView {
                 this.board.updateNumberOfSeeds(leftCapturePit, game.pits[i]);
             }
         }
+    }
+
+    createPlayerName(playerNumber, playerName) {
+        let player = document.createElement("div");
+        player.id = "player" + playerNumber;
+
+        let playerNameDiv = document.createElement("div");
+        playerNameDiv.id = "player" + playerNumber + "Name";
+        playerNameDiv.innerHTML = playerName;
+
+        player.appendChild(playerNameDiv);
+
+        return player;
+    }
+
+    createPlayerNames(parentID, game) {
+        let playersName = document.createElement("div");
+        playersName.id = "playersNames";
+
+        let player1 = this.createPlayerName(1, game.getPlayer1().getName());
+        let player2 = this.createPlayerName(2, game.getPlayer2().getName());
+
+        playersName.appendChild(player1);
+        playersName.appendChild(player2);
+
+        document.getElementById(parentID).appendChild(playersName);
+    }
+    
+    createButtons(parentID) {
+        let buttons = document.createElement("div");
+        buttons.id = "gameButtons";
+
+        let restartButton = utils.createButton("restart", "submit", "Restart");
+        let quitButton = utils.createButton("quit", "submit", "Quit");
+
+        buttons.appendChild(restartButton);
+        buttons.appendChild(quitButton);
+
+        document.getElementById(parentID).appendChild(buttons);
     }
 }
 

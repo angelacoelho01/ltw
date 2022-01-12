@@ -1,3 +1,5 @@
+import { createButton, createInput } from '../utils/utils.js';
+
 export class Login {
     constructor() {
         this.container = document.createElement("div");
@@ -27,29 +29,17 @@ export class Login {
     }
 
     createInputFields() {
-        let username = document.createElement("input");
-        let password = document.createElement("input");
+        // Create username land password inputs fields
+        let usernameInput = createInput("usernameInput", "text", "Username");
+        let passwordInput = createInput("passwordInput", "password", "Password");
 
-        username.className = "username";
-        password.className = "password";
-
-        username.placeholder = "Username";
-        password.placeholder = "Password";
-
-        this.inputFields.appendChild(username);
-        this.inputFields.appendChild(password);
-
+        this.inputFields.appendChild(usernameInput);
+        this.inputFields.appendChild(passwordInput);
         this.login.appendChild(this.inputFields);
     }
 
     createSubmitButton() {
-        let button = document.createElement("button");
-
-        button.id = "loginSubmitButton";
-        button.type = "submit";
-        button.innerHTML = "Login";
-        
+        let button = createButton("loginSubmitButton", "submit", "Login");
         this.login.appendChild(button);
-
     }
 }
