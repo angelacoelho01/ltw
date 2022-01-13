@@ -3,6 +3,20 @@ import * as pageLoader from "../PageLoader.js";
 
 let isUserLogged = false;
 
+const url = 'http://twserver.alunos.dcc.fc.up.pt:8008/';
+
+async function registerxanxo(nick, pass) {
+    await fetch(url + 'register', {
+    method: 'POST',
+    body: JSON.stringify({
+        nick: nick, 
+        password: pass
+    }),
+})
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
+
 export function validateRegister(login, appCopy) {
     let isUsernameValid = false;
     let isPasswordValid = false;
@@ -49,7 +63,10 @@ export function validateRegister(login, appCopy) {
     register.addEventListener("click", function() {
         if(isUsernameValid && isPasswordValid && isConfirmPasswordValid) {
             console.log("Registration completed successfully!");
-            let userList = JSON.parse(localStorage.getItem('userList') || '[]');
+            console.log(username.value, password.value)
+            registerxanxo(username.value, password.value);
+
+            /*let userList = JSON.parse(localStorage.getItem('userList') || '[]');
 
             userList.push(
                 {
@@ -58,7 +75,7 @@ export function validateRegister(login, appCopy) {
                 }
             );
 
-            localStorage.setItem('userList', JSON.stringify(userList));
+            localStorage.setItem('userList', JSON.stringify(userList));*/
 
             utils.cleanPage();
             login.userLogin();
@@ -80,7 +97,7 @@ export function validateLogin(pageToLoad, game) {
     let login = document.querySelector("#loginSubmitButton");
 
     login.addEventListener("click", function() {
-        userList = JSON.parse(localStorage.getItem('userList'));
+        /*userList = JSON.parse(localStorage.getItem('userList'));
 
         // Search username and password in userList
         userList.forEach(function (element) {
@@ -90,9 +107,11 @@ export function validateLogin(pageToLoad, game) {
                     password: element.password
                 };
             }
-        });
+        });*/
+        console.log(username.value);
+        registerxanxo(username.value, password.value);
 
-        if(username.value == validUser.username && password.value == validUser.password) {
+        //if(username.value == validUser.username && password.value == validUser.password) {
             console.log("User signed in successfully!");
             utils.cleanPage();
 
@@ -121,9 +140,9 @@ export function validateLogin(pageToLoad, game) {
             username.value = "";
             password.value = "";
             isUserLogged = true;
-        } else {
-            console.log("Can't sign in user...");
-        }
+        //} else {
+          //  console.log("Can't sign in user...");
+        //}
     });
 }
 

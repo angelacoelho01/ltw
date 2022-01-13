@@ -6,6 +6,8 @@ import * as utils from './utils/utils.js';
 import * as auth from './auth/auth.js';
 import * as pageLoader from './PageLoader.js';
 
+const url = 'http://twserver.alunos.dcc.fc.up.pt:8008/';
+
 let gameView = new GameView();
 let game = new Game();
 let login = new Login();
@@ -38,6 +40,9 @@ function addEventListenerPlayButton() {
         let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
         let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
         game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, auth.getUsername(), "mafarrico");
+        game.player1.setPassword("123456");
+        game.player2.setPassword("123456");
+        join(game.player1);
         gameView.createGameMessage("app", game);
         gameView.createBoard("app", numberOfPitsPerPlayer, game.pits, game);
         addEventListenerInPits();
@@ -122,7 +127,6 @@ function addEventListenerInPits(){
     addEventListenerRestartButton();
     pitsArray.forEach(pit => {
         pit.addEventListener("click", async function() {
-            console.log(pitsArray.indexOf(pit));
            if (pitsArray.indexOf(pit) >= game.numberOfPitsPerPlayer){
                playRound(pitsArray.indexOf(pit) - game.numberOfPitsPerPlayer); 
            } else {
@@ -166,31 +170,15 @@ if(game.hasStarted) {
     addEventListenerQuitButton();
 } else {
     addEventListenerPlayButton();
-
 }
 
-const url = 'http://twserver.alunos.dcc.fc.up.pt:8008/';
-
-async function register(nick, pass) {
-    await fetch(url + 'register', {
-    method: 'POST',
-    body: JSON.stringify({
-        nick: nick, 
-        pass: pass
-    }),
-})
-    .then(response => response.json())
-    .then(//VAI PARA A PÁGINA DE LOGIN
-        );
-}
-
-async function join() {
+async function join(player) {
 await fetch(url + 'join', {
     method: 'POST',
     body: JSON.stringify({
         group:"63", 
-        nick: game.player1.name, 
-        password: "123456",
+        nick: player.name, 
+        password: player.password,
         size: game.numberOfPitsPerPlayer,
         initial: game.numberOfSeedsPerPit
     }),

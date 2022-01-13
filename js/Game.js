@@ -1,6 +1,7 @@
 export default class Game {
     constructor() {
         this.hasStarted = false;
+        this.id = null;
     }
 
     create(numberOfPitsPerPlayer, numberOfSeedsPerPit, name1, name2){
