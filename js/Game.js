@@ -2,7 +2,11 @@ export default class Game {
     constructor() {
         this.hasStarted = false;
         this.id = null;
+        this.player1 = new Player("Player 1");
+        this.player2 = new Player("Computer");
     }
+
+    
 
     create(numberOfPitsPerPlayer, numberOfSeedsPerPit, name1, name2){
         this.pits = new Array(numberOfPitsPerPlayer*2 + 2).fill(numberOfSeedsPerPit);
@@ -162,6 +166,10 @@ class Player{
 
     getName() {
         return this.name;
+    }
+
+    setName(name) {
+        this.name = name;
     }
 
     getPoints() {

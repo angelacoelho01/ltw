@@ -1,3 +1,13 @@
+export const pages = {
+    OPPONENT_OPTIONS: 0,
+    GAME_OPTIONS: 1,
+    REGISTER: 2,
+    INSTRUCTIONS: 3,
+    SCOREBOARD: 4,
+    GAME_COMPUTER: 5,
+    GAME_PLAYER: 6
+};
+
 export function getElementCopy(id) {
     let source = document.getElementById(id);
     let target = document.getElementById(id);

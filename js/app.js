@@ -2,15 +2,24 @@ import { Register } from './auth/Register.js';
 import Game from './Game.js';
 import GameView from "./GameView.js"
 import * as utils from './utils/utils.js';
-import * as pageLoader from './PageLoader.js';
+import * as pageLoader from './pages.js';
+import * as ev from './EventListener.js';
 
 let gameView = new GameView();
 let game = new Game();
 let register = new Register();
 let appCopy = utils.getElementCopy("app");
 
-document.getElementById("register").addEventListener("click", function() {
+let current_page = utils.pages.OPPONENT_OPTIONS;
 
+// First listens to buttons with id="opponentComputer" and id="opponentPlayer"
+
+ev.addEventListenerOpponentOptions(register, game, gameView);
+ev.addEventListenerInstructions(game, gameView);
+ev.addEventListenerScoreboard(game, gameView);
+
+/*document.getElementById("register").addEventListener("click", function() {
+    console.log(register.isUserRegistered());
     if(register.isUserRegistered()) {
         window.location.reload();
     } else {
@@ -18,9 +27,9 @@ document.getElementById("register").addEventListener("click", function() {
         register.displayRegister();  
         register.validateRegister(appCopy);
     }
-});
+});*/
 
-function addEventListenerPlayButton() {
+/*function addEventListenerPlayButton() {
     document.getElementById("bt").addEventListener("click", function(){
         let nPits = document.getElementById("selectNPits");
         let nSeeds = document.getElementById("selectNSeeds");
@@ -34,17 +43,17 @@ function addEventListenerPlayButton() {
         gameView.createBoard("app", numberOfPitsPerPlayer, game.pits, game);
         addEventListenerInPits();
     });
-}
+}*/
 
 
-document.getElementById("play").addEventListener("click", function() {
+/*document.getElementById("play").addEventListener("click", function() {
     utils.removeClass("active");
     utils.addClass("play", "active");
     pageLoader.loadInitialPage();
     addEventListenerPlayButton();
-});
+});*/
 
-document.getElementById("instructions").addEventListener("click", function() {
+/*document.getElementById("instructions").addEventListener("click", function() {
     utils.cleanPage();
     utils.addClass("instructions", "active");
     pageLoader.loadInstructionsPage(game);
@@ -64,9 +73,9 @@ document.getElementById("instructions").addEventListener("click", function() {
             utils.addClass("play", "active");
         });
     }
-});
+});*/
 
-document.getElementById("scoreboard").addEventListener("click", function() {
+/*document.getElementById("scoreboard").addEventListener("click", function() {
     utils.cleanPage();
     utils.addClass("scoreboard", "active"); 
     pageLoader.loadScoreboardPage(game);
@@ -86,9 +95,9 @@ document.getElementById("scoreboard").addEventListener("click", function() {
             utils.addClass("play", "active");
         });
     }
-});
+});*/
 
-function playRound(pitIndex){
+/*function playRound(pitIndex){
     if(!game.endGame()){
         game.playRound(pitIndex);
         gameView.updateGameBoard(game);
@@ -96,18 +105,18 @@ function playRound(pitIndex){
     } else {
         gameView.showEndGameMessage(game);
         addEventListenerPlayButton();
-    }
+    }*/
     /*    game.playRound(pitIndex, game.currentPlayer);
         console.log(game.currentPlayer);
         console.log(game.pits);
     } else addEventListenerPlayButton();*/
-}
+//}
 
-function sleep(ms) {
+/*function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
+}*/
 
-function addEventListenerInPits(){
+/*function addEventListenerInPits(){
     const pits = document.querySelectorAll(".small_pit");
     const pitsArray = Array.from(pits);
     addEventListenerQuitButton();
@@ -159,5 +168,5 @@ if(game.hasStarted) {
     addEventListenerPlayButton();
 }
 
-
+*/
 

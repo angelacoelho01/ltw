@@ -1,5 +1,6 @@
 import * as utils from '../utils/utils.js';
 import * as server from '../server/server.js';
+import * as pages from '../pages.js';
 
 export class Register {
     constructor() {
@@ -22,6 +23,7 @@ export class Register {
     }
 
     isUserRegistered() {
+        console.log(this.isRegistered);
         return this.isRegistered;
     }
 
@@ -34,6 +36,8 @@ export class Register {
     }
 
     displayRegister() {
+        // Remove current page
+        document.getElementById("app").remove();
         document.body.appendChild(this.container);
     }
 
@@ -58,16 +62,17 @@ export class Register {
     }
 
     createSubmitButton() {
-        let button = utils.createButton("loginSubmitButton", "submit", "Login");
+        let button = utils.createButton("registerButton", "submit", "Login");
         this.register.appendChild(button);
     }
 
-    validateRegister(pageToLoad) {
+    validateRegister() {
         let username = document.querySelector("#usernameInput");
         let password = document.querySelector("#passwordInput");
-        let registerSubmitButton = document.querySelector("#loginSubmitButton");
+        let registerButton = document.querySelector("#registerButton");
+        this.isRegistered = true;
 
-        registerSubmitButton.addEventListener("click", function() {
+        registerButton.addEventListener("click", function() {
 
             console.log(username.value);
             server.register(username.value, password.value);
@@ -75,33 +80,11 @@ export class Register {
             this.username = username.value;
             this.password = password.value;
 
-            console.log("User signed in successfully!");
-            utils.cleanPage();
-
-            // Load play page and add username
-            let registerButton = document.getElementById("register");   /* Reutilize register button for logout */
-            registerButton.innerHTML = "Logout";
-
-            let user = document.createElement("div");
-            user.id = "user";
-            user.innerHTML = username.value;
-
-            let authenticationField = document.getElementById("authentication");
-            authenticationField.insertBefore(user, registerButton);
-
-            // Make Play in header active
-            utils.addClass("play", "active");
-
-            document.body.appendChild(pageToLoad);
-
-            // Update player1 Name in play page
-            let player1Name = document.getElementById("player1Name"); 
-            if(player1Name != undefined) player1Name.innerHTML = username.value;
+            pages.addUsernameLogout(username.value);
 
             // Clear input fields
             username.value = "";
             password.value = "";
-            this.isRegistered = true;
         });
     }
 }

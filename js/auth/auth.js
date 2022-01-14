@@ -1,5 +1,5 @@
 import * as utils from "../utils/utils.js";
-import * as pageLoader from "../PageLoader.js";
+import * as pageLoader from "../pages.js";
 
 let isUserLogged = false;
 

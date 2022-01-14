@@ -1,7 +1,7 @@
 import * as utils from './utils/utils.js';
 import * as auth from './auth/auth.js';
 
-export function loadInitialPage() {
+export function gameOptionsPage() {
     // Clean current page
     document.getElementById("app").remove();
 
@@ -50,7 +50,7 @@ export function loadInitialPage() {
     gameOptions.appendChild(chooseNSeeds);
 
     // Create play button
-    let playButton = utils.createButton("bt", "submit", "Play");
+    let playButton = utils.createButton("playButton", "submit", "Play");
     playButton.className = "submitButton";
 
     gameOptions.appendChild(playButton);
@@ -59,7 +59,43 @@ export function loadInitialPage() {
     document.body.appendChild(app);
 }
 
-export function loadInstructionsPage(game) {
+export function gamePage() {
+
+}
+
+
+export function addUsernameLogout(username) {
+    let header = document.getElementById("header");
+    
+    let headerRight = document.createElement("div");
+    headerRight.id = "headerRight";
+
+    let user = document.createElement("div");
+    user.id = "user";
+    user.innerHTML = username;
+    headerRight.appendChild(user);
+
+    let logoutButton = utils.createButton("logoutButton", "submit", "Logout");
+    headerRight.appendChild(logoutButton);
+
+    header.appendChild(headerRight);
+
+    // Make Play in header active
+    utils.addClass("play", "active");
+
+    // Update player1 Name in play page
+    let player1Name = document.getElementById("player1Name"); 
+    if(player1Name != undefined) player1Name.innerHTML = username;
+}
+
+export function instructionsPage(game) {
+    // Clean current page
+    document.getElementById("app").remove();
+
+    // Make Instructions in header active
+    utils.removeClass("active");
+    utils.addClass("instructions", "active");
+
     let container = document.createElement("div");
     container.className = "container";
     container.id = "app";
@@ -73,14 +109,21 @@ export function loadInstructionsPage(game) {
         instructions.appendChild(resumeButton);
     }
 
-    let playButton = utils.createButton("playButton", "submit", "Play") ;
+    let playButton = utils.createButton("instructionsPlayButton", "submit", "Play") ;
     instructions.appendChild(playButton);
 
     container.appendChild(instructions);
     document.body.appendChild(container);
 }
 
-export function loadScoreboardPage(game) {
+export function scoreboardPage(game) {
+    // Clean current page
+    document.getElementById("app").remove();
+
+    // Make Scoreboard in header active
+    utils.removeClass("active");
+    utils.addClass("scoreboard", "active");
+
     let container = document.createElement("div");
     container.className = "container";
     container.id = "app";
@@ -95,7 +138,7 @@ export function loadScoreboardPage(game) {
         scoreboard.appendChild(resumeButton);
     }
 
-    let playButton = utils.createButton("playButton", "submit", "Play");        
+    let playButton = utils.createButton("scoreboardPlayButton", "submit", "Play");        
     scoreboard.appendChild(playButton);
 
     container.appendChild(scoreboard);
