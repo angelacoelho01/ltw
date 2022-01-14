@@ -1,35 +1,22 @@
-import { Login } from './auth/Login.js';
 import { Register } from './auth/Register.js';
 import Game from './Game.js';
 import GameView from "./GameView.js"
 import * as utils from './utils/utils.js';
-import * as auth from './auth/auth.js';
 import * as pageLoader from './PageLoader.js';
-
-const url = 'http://twserver.alunos.dcc.fc.up.pt:8008/';
 
 let gameView = new GameView();
 let game = new Game();
-let login = new Login();
 let register = new Register();
 let appCopy = utils.getElementCopy("app");
 
-console.log("Logged in?" + auth.isUserLoggedIn());
-
-document.getElementById("login").addEventListener("click", function() {
-    utils.cleanPage();
-    login.userLogin();
-    auth.validateLogin(appCopy);
-});
-
 document.getElementById("register").addEventListener("click", function() {
 
-    if(auth.isUserLoggedIn()) {
+    if(register.isUserRegistered()) {
         window.location.reload();
     } else {
         utils.cleanPage();
-        register.userRegister();  
-        auth.validateRegister(login, appCopy);
+        register.displayRegister();  
+        register.validateRegister(appCopy);
     }
 });
 
@@ -39,7 +26,7 @@ function addEventListenerPlayButton() {
         let nSeeds = document.getElementById("selectNSeeds");
         let numberOfPitsPerPlayer = nPits.options[nPits.selectedIndex].value;
         let numberOfSeedsPerPit = nSeeds.options[nSeeds.selectedIndex].value;
-        game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, auth.getUsername(), "mafarrico");
+        game.create(numberOfPitsPerPlayer, numberOfSeedsPerPit, register.getUsername(), "mafarrico");
         game.player1.setPassword("123456");
         game.player2.setPassword("123456");
         join(game.player1);
@@ -147,7 +134,7 @@ function addEventListenerRestartButton() {
         utils.removeElementsByClassName("board");
         document.getElementById("playersNames").remove();
         document.getElementById("gameButtons").remove();
-        game.create(game.getNumberOfPitsPerPlayer(), game.getNumberOfSeedsPerPit(), auth.getUsername(), "mafarrico");
+        game.create(game.getNumberOfPitsPerPlayer(), game.getNumberOfSeedsPerPit(), register.getUsername(), "mafarrico");
         gameView.resetGameMessages("app", game);
         gameView.createBoard("app", game.getNumberOfPitsPerPlayer(), game.pits, game);
         addEventListenerInPits();
@@ -172,19 +159,5 @@ if(game.hasStarted) {
     addEventListenerPlayButton();
 }
 
-async function join(player) {
-await fetch(url + 'join', {
-    method: 'POST',
-    body: JSON.stringify({
-        group:"63", 
-        nick: player.name, 
-        password: player.password,
-        size: game.numberOfPitsPerPlayer,
-        initial: game.numberOfSeedsPerPit
-    }),
-})
-    .then(response => response.json())
-    .then(data => console.log(data));
-}
 
 
