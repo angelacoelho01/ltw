@@ -11,12 +11,12 @@ let register = new Register();
 let appCopy = utils.getElementCopy("app");
 
 let current_page = utils.pages.OPPONENT_OPTIONS;
-
 // First listens to buttons with id="opponentComputer" and id="opponentPlayer"
 
-ev.addEventListenerOpponentOptions(register, game, gameView);
+ev.addEventListenerGameMode(register, game, gameView);
 ev.addEventListenerInstructions(game, gameView);
 ev.addEventListenerScoreboard(game, gameView);
+ev.addEventListenerPlay(register, game, gameView);
 
 /*document.getElementById("register").addEventListener("click", function() {
     console.log(register.isUserRegistered());

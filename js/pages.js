@@ -1,6 +1,44 @@
 import * as utils from './utils/utils.js';
 import * as auth from './auth/auth.js';
 
+export function gameModePage() {
+    // Clean current page
+    document.getElementById("app").remove();
+
+    // Make Play in header active
+    utils.removeClass("active");
+    utils.addClass("play", "active");
+
+    let app = document.createElement("container");
+    app.id = "app";
+
+    let opponentOptions = document.createElement("div");
+    opponentOptions.className = "gameMode";
+
+    let opponentOptionsText = document.createElement("div");
+    opponentOptionsText.className = "gameModeText";
+    opponentOptionsText.innerHTML = "Choose your opponent";
+
+    let opponentOptionsButtons = document.createElement("div");
+    opponentOptionsButtons.className = "gameModeButtons";
+
+    let opponentComputer = utils.createButton("opponentComputer", "submit", "Computer");
+    opponentComputer.className = "opponent";
+
+    let opponentPlayer = utils.createButton("opponentPlayer", "submit", "1v1");
+    opponentPlayer.className = "opponent";
+
+    opponentOptionsButtons.appendChild(opponentComputer);
+    opponentOptionsButtons.appendChild(opponentPlayer);
+
+    opponentOptions.appendChild(opponentOptionsText);
+    opponentOptions.appendChild(opponentOptionsButtons);
+
+    app.appendChild(opponentOptions);
+
+    document.body.appendChild(app);
+}
+
 export function gameOptionsPage() {
     // Clean current page
     document.getElementById("app").remove();
@@ -104,13 +142,15 @@ export function instructionsPage(game) {
     instructions.className = "auth";
     instructions.innerHTML = "Instructions";
 
+    console.log(game.hasStarted);
+    console.log("end game = " + game.endGame());
     if(game.hasStarted) {
-        let resumeButton = utils.createButton("resumeButton", "submit", "Resume");
+        let resumeButton = utils.createButton("backButton", "submit", "Back");
         instructions.appendChild(resumeButton);
+    } else {
+        let playButton = utils.createButton("instructionsPlayButton", "submit", "Play") ;
+        instructions.appendChild(playButton);
     }
-
-    let playButton = utils.createButton("instructionsPlayButton", "submit", "Play") ;
-    instructions.appendChild(playButton);
 
     container.appendChild(instructions);
     document.body.appendChild(container);

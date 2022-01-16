@@ -53,3 +53,7 @@ export function createInput(id, type, placeholder) {
 
     return input;
 }
+
+export function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}

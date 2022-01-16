@@ -9,14 +9,17 @@ export default class GameView {
         this.createButtons(parentID);
     }
     createGameMessage(parentID, game){
-        let parent = document.getElementById(parentID);
+        let parent = document.createElement("div");
+        parent.id = parentID;
+
         let message = document.createElement("div");
         message.className = "message";
         message.innerText = game.currentPlayer == game.player1 ? 
             "It's " + game.player1.name + "'s turn!" :
              "It's " + game.player2.name + "'s turn!";
+
         parent.appendChild(message);
-        
+        document.body.append(parent);
     }
     updateGameBoard(game){
         let divPits = document.querySelectorAll(".small_pit");
@@ -48,6 +51,7 @@ export default class GameView {
     }
 
     resetGameMessages(parentID, game) {
+        console.log("parentID " + parentID);
         utils.removeElementsByClassName("message");
         this.createGameMessage(parentID, game);
     }
@@ -83,10 +87,10 @@ export default class GameView {
         buttons.id = "gameButtons";
 
         let restartButton = utils.createButton("restart", "submit", "Restart");
-        let quitButton = utils.createButton("quit", "submit", "Quit");
+        let leaveButton = utils.createButton("leave", "submit", "Leave");
 
         buttons.appendChild(restartButton);
-        buttons.appendChild(quitButton);
+        buttons.appendChild(leaveButton);
 
         document.getElementById(parentID).appendChild(buttons);
     }

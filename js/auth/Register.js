@@ -1,5 +1,5 @@
 import * as utils from '../utils/utils.js';
-import * as server from '../server/server.js';
+import * as server from '../server/requests.js';
 import * as pages from '../pages.js';
 
 export class Register {
@@ -23,7 +23,6 @@ export class Register {
     }
 
     isUserRegistered() {
-        console.log(this.isRegistered);
         return this.isRegistered;
     }
 
@@ -66,7 +65,7 @@ export class Register {
         this.register.appendChild(button);
     }
 
-    validateRegister() {
+    validateRegister(player) {
         let username = document.querySelector("#usernameInput");
         let password = document.querySelector("#passwordInput");
         let registerButton = document.querySelector("#registerButton");
@@ -79,6 +78,9 @@ export class Register {
 
             this.username = username.value;
             this.password = password.value;
+           
+            player.name = username.value;
+            player.password = password.value;
 
             pages.addUsernameLogout(username.value);
 

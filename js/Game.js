@@ -1,17 +1,18 @@
+import { Player } from "./Player.js";
+
 export default class Game {
     constructor() {
         this.hasStarted = false;
         this.id = null;
         this.player1 = new Player("Player 1");
         this.player2 = new Player("Computer");
+        this.multiplayer = false;
+        this.hasStarted = false;
+        this.leave = false;
     }
 
-    
-
-    create(numberOfPitsPerPlayer, numberOfSeedsPerPit, name1, name2){
+    create(numberOfPitsPerPlayer, numberOfSeedsPerPit, player1, player2){
         this.pits = new Array(numberOfPitsPerPlayer*2 + 2).fill(numberOfSeedsPerPit);
-        this.player1 = new Player(name1);
-        this.player2 = new Player(name2);
         this.numberOfSeedsPerPit = numberOfSeedsPerPit;
         this.numberOfPitsPerPlayer = numberOfPitsPerPlayer;
         this.totalNumberOfPits = this.numberOfPitsPerPlayer*2 + 2;
@@ -20,9 +21,20 @@ export default class Game {
         this.pits[this.leftCapturePit] = 0;
         this.pits[this.rightCapturePit] = 0;
         this.currentPlayer = this.player1;
-        this.hasStarted = true;
         this.playAgain = false;
         this.winner = null;
+    }
+
+    setLeave(leave) {
+        this.leave = leave;
+    }
+
+    setHasGameStarted(hasStarted) {
+        this.hasStarted = hasStarted;
+    }
+
+    hasGameStarted() {
+        return this.hasStarted;
     }
 
     getNumberOfPitsPerPlayer() {
@@ -37,8 +49,20 @@ export default class Game {
         return this.player1;
     }
 
+    setPlayer1(player1) {
+        this.player1 = player1;
+    }
+
     getPlayer2() {
         return this.player2;
+    }
+
+    setMultiplayer(multiplayer) {
+        this.multiplayer = multiplayer;
+    }
+
+    isMultiplayer() {
+        return this.multiplayer;
     }
 
     isInPlayer1Pits(index){
@@ -103,6 +127,9 @@ export default class Game {
     endGame(){
         let player1HasNoSeeds = true;
         let player2HasNoSeeds = true;
+
+        console.log("leave = " + this.leave);
+
         for(let i = 0; i < this.rightCapturePit; i++){
             if (this.pits[i] != 0){
                 player1HasNoSeeds = false;
@@ -115,7 +142,7 @@ export default class Game {
                 break;
             }
         }
-        if (player1HasNoSeeds || player2HasNoSeeds){
+        if (player1HasNoSeeds || player2HasNoSeeds || this.leave){
             if (this.pits[this.rightCapturePit] > this.pits[this.leftCapturePit]){
                 this.winner = this.player1;
                 this.winner.points = this.pits[this.rightCapturePit];
@@ -157,30 +184,3 @@ export default class Game {
     }
 }
 
-class Player{
-    constructor(name) {
-        this.name = name;
-        this.points = 0;
-        this.password = null;
-    }
-
-    getName() {
-        return this.name;
-    }
-
-    setName(name) {
-        this.name = name;
-    }
-
-    getPoints() {
-        return this.points;
-    }
-
-    getPassword() {
-        return this.password
-    }
-
-    setPassword(password) {
-        this.password = password;
-    }
-}
