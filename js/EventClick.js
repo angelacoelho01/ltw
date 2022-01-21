@@ -49,8 +49,7 @@ export default class EventClick {
             this.gameView.createGameMessage("app", this.game);
             this.gameView.createBoard("app", numberOfPitsPerPlayer, this.game.pits, this.game);
 
-            if(this.game.multiplayer)
-                request.join(this.game);
+            if(this.game.multiplayer) request.join(this.game);
 
             //this.handlePits();
             this.update();
@@ -137,6 +136,7 @@ export default class EventClick {
         return function() {
             // Annouce winner
             this.game.setLeave(true);
+            if(this.game.multiplayer) request.leave(this.game.currentPlayer, this.game.getID());
             this.update();
         }
     }
@@ -230,8 +230,12 @@ export default class EventClick {
 
     playRound(pitIndex){
         console.log("GAME HAS STARTED? " + this.game.hasStarted);
+        console.log("PIT INDEX = " + pitIndex);
+
+
         let endGame = this.game.endGame();
         if(!endGame){
+            if(this.game.multiplayer) request.notify(this.game.currentPlayer, this.game.getID(), pitIndex);
             this.game.playRound(pitIndex);
             this.gameView.updateGameBoard(this.game);
             this.gameView.updateGameMessages(this.game);

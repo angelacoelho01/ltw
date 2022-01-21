@@ -9,6 +9,7 @@ export default class Game {
         this.multiplayer = false;
         this.hasStarted = false;
         this.leave = false;
+        this.gameID = undefined;
     }
 
     create(numberOfPitsPerPlayer, numberOfSeedsPerPit, player1, player2){
@@ -23,6 +24,14 @@ export default class Game {
         this.currentPlayer = this.player1;
         this.playAgain = false;
         this.winner = null;
+    }
+
+    setID(id) {
+        this.gameID = id;
+    }
+
+    getID() {
+        return this.gameID;
     }
 
     setLeave(leave) {

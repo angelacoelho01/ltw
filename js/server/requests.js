@@ -25,41 +25,47 @@ export async function join(game) {
     })
     .then(response => response.json())
     .then(response => {
-        update(response.game, game.player1.getName())
+        game.setID(response.game);
+        update(response.game, game.player1.getName());
     });
 }
 
-export function update(gameID, nick) {
+function update(gameID, nick) {
     let updateUrl = url + 'update?nick=' + nick + '&game=' + gameID;
     let eventSource = new EventSource(encodeURI(updateUrl));
-    eventSource.onmessage = function(event) {
-        console.log("enters here");
+    console.log("ENTERS UPDATE FUNCTION REQUEST");
+    /*eventSource.onmessage = function(event) {
+        console.log("enters in update function request");
         const data = JSON.parse(event.data);
         console.log(data);
-    }
+    }*/
 }
 
-export async function leave(player) {
-    await fetch(url + 'join', {
+export async function leave(player, gameID) {
+    await fetch(url + 'leave', {
         method: 'POST',
         body: JSON.stringify({
-            nick: "",
-            password: "",
-            game: ""
+            nick: player.getName(),
+            password: player.getPassword(),
+            game: gameID
         }),
     })
     .then(response => response.json())
     .then(data => console.log(data));
 }
 
-export async function notify(player) {
-    await fetch(url + 'join', {
+export async function notify(player, gameID, pit) {
+    console.log("PLAYER NAME = " + player.getName());
+    console.log("PLAYER PASSWORD = " + player.getPassword());
+    console.log("GAME ID = " + gameID);
+    console.log("MOVE = " +  pit);
+    await fetch(url + 'notify', {
         method: 'POST',
         body: JSON.stringify({
-            nick: "",
-            password: "",
-            game: "",
-            move: ""
+            nick: player.getName(),
+            password: player.getPassword(),
+            game: gameID,
+            move: pit
         }),
     })
     .then(response => response.json())
