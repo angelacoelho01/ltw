@@ -1,5 +1,5 @@
 export const pages = {
-    OPPONENT_OPTIONS: 0,
+    GAME_MODE: 0,
     GAME_OPTIONS: 1,
     REGISTER: 2,
     INSTRUCTIONS: 3,

@@ -3,20 +3,24 @@ import Game from './Game.js';
 import GameView from "./GameView.js"
 import * as utils from './utils/utils.js';
 import * as pageLoader from './pages.js';
-import * as ev from './EventListener.js';
+import EventClick from './EventClick.js';
 
 let gameView = new GameView();
 let game = new Game();
 let register = new Register();
 let appCopy = utils.getElementCopy("app");
 
-let current_page = utils.pages.OPPONENT_OPTIONS;
+let state = utils.pages.GAME_MODE;
 // First listens to buttons with id="opponentComputer" and id="opponentPlayer"
+let ec = new EventClick(register, game, gameView);
 
-ev.addEventListenerGameMode(register, game, gameView);
+
+
+
+/*ev.addEventListenerGameMode(register, game, gameView);
 ev.addEventListenerInstructions(game, gameView);
 ev.addEventListenerScoreboard(game, gameView);
-ev.addEventListenerPlay(register, game, gameView);
+ev.addEventListenerPlay(register, game, gameView);*/
 
 /*document.getElementById("register").addEventListener("click", function() {
     console.log(register.isUserRegistered());

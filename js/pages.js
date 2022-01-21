@@ -143,7 +143,6 @@ export function instructionsPage(game) {
     instructions.innerHTML = "Instructions";
 
     console.log(game.hasStarted);
-    console.log("end game = " + game.endGame());
     if(game.hasStarted) {
         let resumeButton = utils.createButton("backButton", "submit", "Back");
         instructions.appendChild(resumeButton);
