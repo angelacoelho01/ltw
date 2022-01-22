@@ -163,7 +163,7 @@ export default class Game {
         }
         return false;
     }
-    getBestMove(){ //ESQUECER ESTE ESPARGUETE E COLOCAR UM ARRAY NOS ARGUMENTOS DO PLAYROUND
+    getBestMove(){
         let bestPit = 0;
         let seedsInBestPit = 0;
         let currPits = Object.assign({}, this.pits);
