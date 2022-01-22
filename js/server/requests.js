@@ -27,6 +27,7 @@ export async function join(game) {
     .then(response => {
         game.setID(response.game);
         update(response.game, game.player1.getName());
+        console.log(response);
     });
 }
 
