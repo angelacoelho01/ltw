@@ -49,7 +49,7 @@ export default class EventClick {
             this.gameView.createGameMessage("app", this.game);
             this.gameView.createBoard("app", numberOfPitsPerPlayer, this.game.pits, this.game);
 
-            if(this.game.multiplayer) request.join(this.game);
+            if(this.game.multiplayer) request.join(this.game, this.update());
 
             //this.handlePits();
             this.update();

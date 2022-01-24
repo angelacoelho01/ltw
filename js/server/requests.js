@@ -1,3 +1,6 @@
+import * as eventclick from '../EventClick.js';
+
+
 const url = 'http://twserver.alunos.dcc.fc.up.pt:8008/';
 
 export async function register(nick, pass) {
@@ -12,7 +15,7 @@ export async function register(nick, pass) {
     .then(data => console.log(data));
 }
 
-export async function join(game) {
+export async function join(game, updateGame) {
     await fetch(url + 'join', {
         method: 'POST',
         body: JSON.stringify({
@@ -26,20 +29,46 @@ export async function join(game) {
     .then(response => response.json())
     .then(response => {
         game.setID(response.game);
-        update(response.game, game.player1.getName());
+        update(response.game, game.player1.getName(), game, updateGame);
         console.log(response);
     });
 }
 
-function update(gameID, nick) {
+function handleUpdateRequest(data, game, updateGame){
+
+    let player1Name = game.player1.getName();
+    for (let playerName in data.stores) {
+        if (playerName !== player1Name) game.player2.setName(playerName);
+    }
+    let player2Name = document.getElementById("player2Name"); 
+    if(player2Name != undefined) player2Name.innerHTML = game.player2.getName();
+
+    if (data.board.turn == game.player2.getName()) {
+        game.currentPlayer = game.player2;
+    } else  {
+        game.currentPlayer = game.player1;
+    }
+    //eventclick.update();
+
+}
+
+function update(gameID, nick, game, updateGame) {
     let updateUrl = url + 'update?nick=' + nick + '&game=' + gameID;
     let eventSource = new EventSource(encodeURI(updateUrl));
-    console.log("ENTERS UPDATE FUNCTION REQUEST");
-    /*eventSource.onmessage = function(event) {
-        console.log("enters in update function request");
+    eventSource.onstart = function(event){
+        console.log('start');
+    }
+    eventSource.onmessage = function(event){
         const data = JSON.parse(event.data);
         console.log(data);
-    }*/
+        handleUpdateRequest(data, game, updateGame);
+    };
+    eventSource.onerror = (e) => {
+            console.error(e);
+            eventSource.close();
+        };
+    //eventSource.close();
+    console.log("ENTERS UPDATE FUNCTION REQUEST");
 }
 
 export async function leave(player, gameID) {
@@ -72,7 +101,6 @@ export async function notify(player, gameID, pit) {
     .then(response => response.json())
     .then(data => console.log(data));
 }
-
 
     
     
